@@ -4,6 +4,7 @@ import {loadCards} from './redux/reducers/desk';
 import {useEffect} from 'react';
 function App() {
 
+  const {desk}  = useAppSelector(state=>state);
   const dispatch = useAppDispatch();
 
   useEffect(()=>{
@@ -12,7 +13,16 @@ function App() {
 
   return (
     <div className="App">
-
+      {
+        desk.map((card)=>{
+          return (
+            <div>
+              <p>{card.value}</p>
+              <img src={card.imgUrl}></img>
+            </div>
+          )
+        })
+      }
     </div>
   )
 }
