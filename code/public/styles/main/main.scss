@@ -39,6 +39,6 @@
         transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
     }
     100%{
-        transform: translateY(100vw) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+        transform: translateY(100vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
     }
 }

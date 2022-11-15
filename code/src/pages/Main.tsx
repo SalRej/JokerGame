@@ -21,16 +21,20 @@ const Main:React.FC = ()=>{
         setCardImageUrls(urls);
     },[])
 
-    useEffect(()=>{
-
+    const randomizeCards = () =>{
         const cardImages = document.querySelectorAll<HTMLElement>('.falling_card');
         cardImages.forEach(image=>{
-
             image.style.left=(Math.random()*window.innerWidth).toString() + 'px';
             image.style.top=(0 - (Math.random()*window.innerHeight)).toString() + 'px';
             image.style.height=((Math.random()*4)+1).toString() + 'em';
         })
+    }
+    useEffect(()=>{ 
 
+        randomizeCards();
+        window.addEventListener('resize',()=>{
+            randomizeCards();
+        })
         setIsLoaded(true);
     },[cardImageUrls]);
 
@@ -42,8 +46,8 @@ const Main:React.FC = ()=>{
     <div className='background'>
         {
             isLoaded &&
-            cardImageUrls.map(url=>{
-                return(<img className="falling_card" src={url}></img>)
+            cardImageUrls.map((url,index)=>{
+                return(<img className="falling_card" src={url} key={index}></img>)
             })
         }
     </div>
