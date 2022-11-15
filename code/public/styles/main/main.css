@@ -1,0 +1,69 @@
+.background {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+}
+
+.background .falling_card {
+  position: absolute;
+  -webkit-box-shadow: white 0px 5px 15px;
+          box-shadow: white 0px 5px 15px;
+}
+
+.background .falling_card:nth-child(2n) {
+  --rotateAngleStart:90deg;
+  --rotateAngleEnd:180deg;
+  -webkit-animation: falling 12s normal linear infinite;
+          animation: falling 12s normal linear infinite;
+}
+
+.background .falling_card:nth-child(odd) {
+  --rotateAngleStart:-10deg;
+  --rotateAngleEnd:100deg;
+  -webkit-animation: falling 11s normal linear infinite;
+          animation: falling 11s normal linear infinite;
+}
+
+.background .falling_card:nth-child(3n) {
+  --rotateAngleStart:30deg;
+  --rotateAngleEnd:360deg;
+  -webkit-animation: falling 7s normal linear infinite;
+          animation: falling 7s normal linear infinite;
+}
+
+.background .falling_card:nth-child(4n) {
+  --rotateAngleStart:10deg;
+  --rotateAngleEnd:100deg;
+  -webkit-animation: falling 10s normal linear infinite;
+          animation: falling 10s normal linear infinite;
+}
+
+.background .falling_card:nth-child(5n) {
+  --rotateAngleStart:-30deg;
+  --rotateAngleEnd:300deg;
+  -webkit-animation: falling 6s normal linear infinite;
+          animation: falling 6s normal linear infinite;
+}
+
+@-webkit-keyframes falling {
+  0% {
+    -webkit-transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+            transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+  }
+  100% {
+    -webkit-transform: translateY(100vw) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+            transform: translateY(100vw) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+  }
+}
+
+@keyframes falling {
+  0% {
+    -webkit-transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+            transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+  }
+  100% {
+    -webkit-transform: translateY(100vw) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+            transform: translateY(100vw) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+  }
+}
+/*# sourceMappingURL=main.css.map */

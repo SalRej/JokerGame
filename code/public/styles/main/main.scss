@@ -1,0 +1,44 @@
+.background{
+    background-color:black;
+    width: 100vw;
+    height: 100vh;
+    .falling_card{
+        position: absolute;
+        // height: 4em;
+        box-shadow: rgb(255, 255, 255) 0px 5px 15px;
+        &:nth-child(2n) { 
+            --rotateAngleStart:90deg;
+            --rotateAngleEnd:180deg;
+            animation:falling 12s normal linear infinite
+        }
+        &:nth-child(odd) { 
+            --rotateAngleStart:-10deg;
+            --rotateAngleEnd:100deg;
+            animation:falling 11s normal linear infinite
+        }
+        &:nth-child(3n) { 
+            --rotateAngleStart:30deg;
+            --rotateAngleEnd:360deg;
+            animation:falling 7s normal linear infinite
+        }
+        &:nth-child(4n) { 
+            --rotateAngleStart:10deg;
+            --rotateAngleEnd:100deg;
+            animation:falling 10s normal linear infinite
+        }
+        &:nth-child(5n) { 
+            --rotateAngleStart:-30deg;
+            --rotateAngleEnd:300deg;
+            animation:falling 6s normal linear infinite
+        }
+    }
+}
+
+@keyframes falling{
+    0%{
+        transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+    }
+    100%{
+        transform: translateY(100vw) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+    }
+}
