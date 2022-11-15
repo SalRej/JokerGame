@@ -36,7 +36,6 @@ export const deskSlice = createSlice({
                 imgUrl:`cards/Joker.png`
             }
             state.push(card,card);
-
         },
         shuffleDeck:(state:Array<Card>)=>{
             let currentIndex = state.length,  randomIndex;
