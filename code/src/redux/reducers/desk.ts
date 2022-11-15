@@ -27,10 +27,16 @@ export const deskSlice = createSlice({
                         imgUrl:`cards/${currentType}${j}.png`
                     }
                     //push 1 card two times becous the game has 2 deck of cards
-                    state.push(card);
-                    state.push(card);
+                    state.push(card,card);
                 }
             }
+            const card:Card = {
+                value:Infinity,
+                type:"Joker",
+                imgUrl:`cards/Joker.png`
+            }
+            state.push(card,card);
+
         },
         shuffleDeck:(state:Array<Card>)=>{
             let currentIndex = state.length,  randomIndex;
