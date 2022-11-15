@@ -1,6 +1,6 @@
 import {useAppSelector} from './redux/hooks';
 import {useAppDispatch} from './redux/hooks';
-import {loadCards} from './redux/reducers/desk';
+import {loadCards,shuffleDeck} from './redux/reducers/desk';
 import {useEffect} from 'react';
 function App() {
 
@@ -9,6 +9,7 @@ function App() {
 
   useEffect(()=>{
     dispatch(loadCards());
+    dispatch(shuffleDeck());
   },[]);
 
   return (

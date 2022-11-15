@@ -1,6 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-
 interface Card{
     value:number,
     type:string,
@@ -18,7 +17,7 @@ export const deskSlice = createSlice({
             let currentType:string="";
             const types:string[] = ["Spades","Hearts","Clubs","Ace"];
 
-            for(let i = 0; i<8 ;i++){
+            for(let i = 0; i<4 ;i++){
                 currentType = types[i];
 
                 for(let j = 1;j<14;j++){
@@ -32,10 +31,21 @@ export const deskSlice = createSlice({
                     state.push(card);
                 }
             }
+        },
+        shuffleDeck:(state:Array<Card>)=>{
+            let currentIndex = state.length,  randomIndex;
+            while (currentIndex != 0) {
+
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                [state[currentIndex], state[randomIndex]] = [
+                state[randomIndex], state[currentIndex]];
+            }
         }
     }
 })
 
-export const {loadCards} = deskSlice.actions;
+export const {loadCards,shuffleDeck} = deskSlice.actions;
 
 export default deskSlice.reducer;
