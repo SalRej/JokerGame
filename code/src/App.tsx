@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 import { Routes , Route } from "react-router-dom";
 import NotFound from './pages/NotFound';
 import Main from './pages/Main';
+import Game from './pages/Game';
 function App() {
 
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path='*' element={<NotFound />} />
         <Route path="/" element={<Main />}/>
+        <Route path="/game" element={<Game />}/>
       </Routes>
     </div>
   )
