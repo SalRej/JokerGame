@@ -1,19 +1,26 @@
 import {useAppDispatch} from './redux/hooks';
 import {loadCards,shuffleDeck} from './redux/reducers/desk';
+import { resetPlayers } from './redux/reducers/players';
 import {useEffect} from 'react';
-import { Routes , Route } from "react-router-dom";
+import { Routes , Route , useLocation } from "react-router-dom";
 import NotFound from './pages/NotFound';
 import Main from './pages/Main';
 import Game from './pages/Game';
 function App() {
 
   const dispatch = useAppDispatch();
-
+  const location = useLocation();
   useEffect(()=>{
     dispatch(loadCards());
     dispatch(shuffleDeck());
   },[]);
 
+  useEffect(()=>{
+    console.log(location.pathname)
+    if(location.pathname!='/game'){
+      dispatch(resetPlayers());
+    }
+  },[location.pathname])
   return (
     <div className="App">
       <Routes>

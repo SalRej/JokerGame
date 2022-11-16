@@ -1,20 +1,29 @@
-import React from 'react'
+import React , {useRef} from 'react'
 import {useNavigate} from 'react-router-dom';
-
+import {useAppDispatch} from '../redux/hooks';
+import {setNumberOfPlayers} from '../redux/reducers/players'; 
 function StartGameForm() {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const numberOfPlayersInput = useRef<HTMLSelectElement>(null);
+
     const startGame = () =>{
-        navigate("/game");
+
+        if(numberOfPlayersInput.current!=null){
+            const numberOfPlayers:number = Number(numberOfPlayersInput.current.value);
+            dispatch(setNumberOfPlayers(numberOfPlayers));
+            navigate("/game");
+        }
     }
     return (
         <div style={{color:"white", backgroundColor:"red"}}>
 
             <label htmlFor="number_players">Choose number of players:</label>
-            <select id="number_players">
+            <select ref={numberOfPlayersInput} id="number_players">
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option value="3">2</option>
-                <option value="4">3</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
             </select>
             <p onClick={startGame}>
                 Start
