@@ -1,10 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-
-interface Card{
-    value:number,
-    type:string,
-    imgUrl:string
-}
+import Card from '../../interfaces/Card';
 
 const initialState:Card[] = [];
 

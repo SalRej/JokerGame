@@ -2,7 +2,7 @@ import React , {useEffect}from 'react'
 import { useAppSelector , useAppDispatch} from '../redux/hooks';
 import {givePlayerCard} from '../redux/reducers/players';
 import { removeNumberOfCards} from '../redux/reducers/deck';
-
+import PlayerHand from '../components/PlayerHand';
 const NUMBER_OF_CARDS_IN_HAND = 13;
 function Game(){
 
@@ -27,20 +27,12 @@ function Game(){
     useEffect(()=>{
         giveCards();
     },[])
+
     return (
         <div>
             {
                 players.map(player=>{
-                    return(
-                        <div>
-                            <h1>{player.name}</h1>
-                            {
-                                player.hand.map(card=>{
-                                    return(<img src={card.imgUrl}></img>)
-                                })
-                            }
-                        </div>
-                    )
+                    return <PlayerHand player={player}/>
                 })
             }
         </div>

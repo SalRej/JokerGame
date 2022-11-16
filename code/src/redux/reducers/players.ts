@@ -1,15 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-interface Card{
-    value:number,
-    type:string,
-    imgUrl:string
-}
-
-interface Player{
-    hand:Card[],
-    id:number,
-    name:string
-}
+import Player from '../../interfaces/Player';
 
 const initialState:Player[] = [];
 
