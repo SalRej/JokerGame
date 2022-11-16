@@ -1,5 +1,5 @@
 import {useAppDispatch} from './redux/hooks';
-import {loadCards,shuffleDeck} from './redux/reducers/desk';
+import {loadCards,shuffleDeck} from './redux/reducers/deck';
 import { resetPlayers } from './redux/reducers/players';
 import {useEffect} from 'react';
 import { Routes , Route , useLocation } from "react-router-dom";

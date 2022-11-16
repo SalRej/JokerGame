@@ -29,11 +29,14 @@ export const playersSlice = createSlice({
         },
         resetPlayers:()=>{
             return initialState;
+        },
+        givePlayerCard:(state:Player[],action)=>{
+            const{id,card} = action.payload;
+            state[id].hand.push(card);
         }
     }
 
 })
 
-export const {setNumberOfPlayers , resetPlayers} = playersSlice.actions;
-
+export const {setNumberOfPlayers , resetPlayers, givePlayerCard} = playersSlice.actions;
 export default playersSlice.reducer;

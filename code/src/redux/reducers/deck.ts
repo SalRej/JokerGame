@@ -8,11 +8,11 @@ interface Card{
 
 const initialState:Card[] = [];
 
-export const deskSlice = createSlice({
-    name:"desk",
+export const deckSlice = createSlice({
+    name:"deck",
     initialState,
     reducers:{
-        loadCards:(state:Array<Card>)=>{
+        loadCards:(state:Card[])=>{
             
             let currentType:string="";
             const types:string[] = ["Spades","Hearts","Clubs","Ace"];
@@ -37,7 +37,7 @@ export const deskSlice = createSlice({
             }
             state.push(card,card);
         },
-        shuffleDeck:(state:Array<Card>)=>{
+        shuffleDeck:(state:Card[])=>{
             let currentIndex = state.length,  randomIndex;
             while (currentIndex != 0) {
 
@@ -47,10 +47,16 @@ export const deskSlice = createSlice({
                 [state[currentIndex], state[randomIndex]] = [
                 state[randomIndex], state[currentIndex]];
             }
+        },
+        removeNumberOfCards:(state,action)=>{
+
+            for(let i =0;i<action.payload;i++){
+                state.pop();
+            }
         }
     }
 })
 
-export const {loadCards,shuffleDeck} = deskSlice.actions;
+export const {loadCards,shuffleDeck,removeNumberOfCards} = deckSlice.actions;
 
-export default deskSlice.reducer;
+export default deckSlice.reducer;

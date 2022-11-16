@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import deskReducer from './reducers/desk';
+import deskReducer from './reducers/deck';
 import playersReducer from './reducers/players';
 
 const  store =  configureStore({
     reducer:{
-        desk:deskReducer,
+        deck:deskReducer,
         players:playersReducer
     }
 })
