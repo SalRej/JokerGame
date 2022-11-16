@@ -2,6 +2,7 @@
   background-color: black;
   width: 100vw;
   height: 100vh;
+  --eye-size:2vw;
 }
 
 .background .falling_card {
@@ -93,39 +94,42 @@
 }
 
 .background .left .left_eye {
-  width: 1.4vw;
+  width: var(--eye-size);
   position: absolute;
   top: 5.6vw;
-  right: 48%;
+  right: 46%;
 }
 
 .background .left .right_eye {
-  width: 1.4vw;
+  width: var(--eye-size);
   position: absolute;
   top: 5.6vw;
-  right: 33%;
+  right: 32%;
 }
 
 .background .right {
   position: absolute;
   right: -5%;
   bottom: -4vw;
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
 }
 
 .background .right .left_eye {
-  width: 1.4vw;
+  width: var(--eye-size);
   position: absolute;
   top: 5.6vw;
-  right: 48%;
+  right: 58%;
 }
 
 .background .right .right_eye {
-  width: 1.4vw;
+  width: var(--eye-size);
   position: absolute;
   top: 5.6vw;
-  right: 33%;
+  right: 44%;
+}
+
+.background .rightKing {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 @-webkit-keyframes falling {
@@ -151,20 +155,23 @@
 }
 
 @media screen and (max-width: 500px) {
+  .background {
+    --eye-size:1.4vh;
+  }
   .background .king_holder img {
     width: 20vh;
   }
   .background .right .left_eye {
-    width: 1.4vh;
+    width: var(--eye-size);
     position: absolute;
     top: 5.6vh;
-    right: 48%;
+    right: 60%;
   }
   .background .right .right_eye {
-    width: 1.4vh;
+    width: var(--eye-size);
     position: absolute;
     top: 5.6vh;
-    right: 33%;
+    right: 45%;
   }
   .background .left {
     position: absolute;
@@ -172,13 +179,13 @@
     bottom: -4vw;
   }
   .background .left .left_eye {
-    width: 1.4vh;
+    width: var(--eye-size);
     position: absolute;
     top: 5.6vh;
     right: 48%;
   }
   .background .left .right_eye {
-    width: 1.4vh;
+    width: var(--eye-size);
     position: absolute;
     top: 5.6vh;
     right: 33%;

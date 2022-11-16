@@ -66,40 +66,43 @@
             object-fit: contain;
         }
     }
+    --eye-size:2vw;
     .left{
         position: absolute;
         left:-5%;
         bottom:-4vw;
         .left_eye{
-            width: 1.4vw;
+            width: var(--eye-size);
             position: absolute;
             top: 5.6vw;
-            right:48%;
+            right:46%;
         }
         .right_eye{
-            width: 1.4vw;
+            width: var(--eye-size);
             position: absolute;
             top: 5.6vw;
-            right:33%;
+            right:32%;
         }
     }
     .right{
         position: absolute;
         right:-5%;
         bottom:-4vw;
-        transform: rotateY(180deg);
         .left_eye{
-            width: 1.4vw;
+            width: var(--eye-size);
             position: absolute;
             top: 5.6vw;
-            right:48%;
+            right:58%;
         }
         .right_eye{
-            width: 1.4vw;
+            width: var(--eye-size);
             position: absolute;
             top: 5.6vw;
-            right:33%;
+            right:44%;
         }
+    }
+    .rightKing{
+        transform: rotateY(180deg);
     }
 }
 
@@ -119,18 +122,19 @@
                 width: 20vh;
             }
         }
+        --eye-size:1.4vh;
         .right{
             .left_eye{
-                width: 1.4vh;
+                width: var(--eye-size);
                 position: absolute;
                 top: 5.6vh;
-                right:48%;
+                right:60%;
             }
             .right_eye{
-                width: 1.4vh;
+                width: var(--eye-size);
                 position: absolute;
                 top: 5.6vh;
-                right:33%;
+                right:45%;
             }
         }
         .left{
@@ -138,13 +142,13 @@
             left:-5%;
             bottom:-4vw;
             .left_eye{
-                width: 1.4vh;
+                width: var(--eye-size);
                 position: absolute;
                 top: 5.6vh;
                 right:48%;
             }
             .right_eye{
-                width: 1.4vh;
+                width: var(--eye-size);
                 position: absolute;
                 top: 5.6vh;
                 right:33%;
