@@ -95,9 +95,13 @@ const Main:React.FC = ()=>{
         <button>Play now</button>
         <div className='king_holder left'>
             <img src='cards/king.png'></img>
+            <img className = "left_eye" src='cards/eye.png'></img>
+            <img className = "right_eye" src='cards/eye.png'></img>
         </div>
         <div className='king_holder right'>
             <img src='cards/king.png'></img>
+            <img className = "left_eye" src='cards/eye.png'></img>
+            <img className = "right_eye" src='cards/eye.png'></img>
         </div>
     </div>
     )

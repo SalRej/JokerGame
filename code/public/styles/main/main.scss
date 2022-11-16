@@ -59,6 +59,7 @@
         }
     }
     .king_holder{
+        position: relative;
         z-index: 3;
         img{
             width: 20vw;
@@ -69,12 +70,36 @@
         position: absolute;
         left:-5%;
         bottom:-4vw;
+        .left_eye{
+            width: 1.4vw;
+            position: absolute;
+            top: 5.6vw;
+            right:48%;
+        }
+        .right_eye{
+            width: 1.4vw;
+            position: absolute;
+            top: 5.6vw;
+            right:33%;
+        }
     }
     .right{
         position: absolute;
         right:-5%;
         bottom:-4vw;
         transform: rotateY(180deg);
+        .left_eye{
+            width: 1.4vw;
+            position: absolute;
+            top: 5.6vw;
+            right:48%;
+        }
+        .right_eye{
+            width: 1.4vw;
+            position: absolute;
+            top: 5.6vw;
+            right:33%;
+        }
     }
 }
 
@@ -92,6 +117,37 @@
         .king_holder{
             img{
                 width: 20vh;
+            }
+        }
+        .right{
+            .left_eye{
+                width: 1.4vh;
+                position: absolute;
+                top: 5.6vh;
+                right:48%;
+            }
+            .right_eye{
+                width: 1.4vh;
+                position: absolute;
+                top: 5.6vh;
+                right:33%;
+            }
+        }
+        .left{
+            position: absolute;
+            left:-5%;
+            bottom:-4vw;
+            .left_eye{
+                width: 1.4vh;
+                position: absolute;
+                top: 5.6vh;
+                right:48%;
+            }
+            .right_eye{
+                width: 1.4vh;
+                position: absolute;
+                top: 5.6vh;
+                right:33%;
             }
         }
     }

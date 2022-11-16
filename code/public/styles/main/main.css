@@ -76,6 +76,7 @@
 }
 
 .background .king_holder {
+  position: relative;
   z-index: 3;
 }
 
@@ -91,12 +92,40 @@
   bottom: -4vw;
 }
 
+.background .left .left_eye {
+  width: 1.4vw;
+  position: absolute;
+  top: 5.6vw;
+  right: 48%;
+}
+
+.background .left .right_eye {
+  width: 1.4vw;
+  position: absolute;
+  top: 5.6vw;
+  right: 33%;
+}
+
 .background .right {
   position: absolute;
   right: -5%;
   bottom: -4vw;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+}
+
+.background .right .left_eye {
+  width: 1.4vw;
+  position: absolute;
+  top: 5.6vw;
+  right: 48%;
+}
+
+.background .right .right_eye {
+  width: 1.4vw;
+  position: absolute;
+  top: 5.6vw;
+  right: 33%;
 }
 
 @-webkit-keyframes falling {
@@ -124,6 +153,35 @@
 @media screen and (max-width: 500px) {
   .background .king_holder img {
     width: 20vh;
+  }
+  .background .right .left_eye {
+    width: 1.4vh;
+    position: absolute;
+    top: 5.6vh;
+    right: 48%;
+  }
+  .background .right .right_eye {
+    width: 1.4vh;
+    position: absolute;
+    top: 5.6vh;
+    right: 33%;
+  }
+  .background .left {
+    position: absolute;
+    left: -5%;
+    bottom: -4vw;
+  }
+  .background .left .left_eye {
+    width: 1.4vh;
+    position: absolute;
+    top: 5.6vh;
+    right: 48%;
+  }
+  .background .left .right_eye {
+    width: 1.4vh;
+    position: absolute;
+    top: 5.6vh;
+    right: 33%;
   }
 }
 /*# sourceMappingURL=main.css.map */
