@@ -58,6 +58,24 @@
             cursor: pointer;
         }
     }
+    .king_holder{
+        z-index: 3;
+        img{
+            width: 20vw;
+            object-fit: contain;
+        }
+    }
+    .left{
+        position: absolute;
+        left:-5%;
+        bottom:-4vw;
+    }
+    .right{
+        position: absolute;
+        right:-5%;
+        bottom:-4vw;
+        transform: rotateY(180deg);
+    }
 }
 
 @keyframes falling{
@@ -66,5 +84,15 @@
     }
     100%{
         transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+    }
+}
+
+@media screen and (max-width:500px){
+    .background{
+        .king_holder{
+            img{
+                width: 20vh;
+            }
+        }
     }
 }

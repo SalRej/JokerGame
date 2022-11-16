@@ -93,6 +93,12 @@ const Main:React.FC = ()=>{
         }
         <h1>Joker Game</h1>
         <button>Play now</button>
+        <div className='king_holder left'>
+            <img src='cards/king.png'></img>
+        </div>
+        <div className='king_holder right'>
+            <img src='cards/king.png'></img>
+        </div>
     </div>
     )
 }

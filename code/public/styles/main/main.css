@@ -75,6 +75,30 @@
   cursor: pointer;
 }
 
+.background .king_holder {
+  z-index: 3;
+}
+
+.background .king_holder img {
+  width: 20vw;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.background .left {
+  position: absolute;
+  left: -5%;
+  bottom: -4vw;
+}
+
+.background .right {
+  position: absolute;
+  right: -5%;
+  bottom: -4vw;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
 @-webkit-keyframes falling {
   0% {
     -webkit-transform: translateY(0%) rotate3d(1, 1, 0, var(--rotateAngleStart));
@@ -94,6 +118,12 @@
   100% {
     -webkit-transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
             transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .background .king_holder img {
+    width: 20vh;
   }
 }
 /*# sourceMappingURL=main.css.map */
