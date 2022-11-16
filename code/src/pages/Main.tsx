@@ -1,5 +1,5 @@
 import React , { useEffect , useState , useRef}from 'react'
-
+import KingWithMovingEyes from '../components/KingWithMovingEyes';
 const Main:React.FC = ()=>{
 
     interface Cordinates{
@@ -11,6 +11,11 @@ const Main:React.FC = ()=>{
     const [isLoaded,setIsLoaded] = useState<boolean>(false);
     const opacityInterval = useRef<null|number>(null);
     const mouseCordinates = useRef<Cordinates>({x:0,y:0});
+
+    const leftKingLeftEye = useRef<HTMLImageElement>(null);
+    const leftKingRightEye = useRef<HTMLImageElement>(null);
+    const rightKingLeftEye = useRef<HTMLImageElement>(null);
+    const rightKingRightEye = useRef<HTMLImageElement>(null);
 
     useEffect(()=>{
 
@@ -63,6 +68,28 @@ const Main:React.FC = ()=>{
             }
         })
     }
+
+    const rotateKingsEyes = () =>{
+        if(leftKingLeftEye.current!=null && leftKingRightEye.current!=null
+            && rightKingLeftEye.current!=null && rightKingRightEye.current!=null){
+
+            const rect1 = leftKingLeftEye.current.getBoundingClientRect();
+            let angleLeftKingLeftEye:number = Math.atan2(rect1.y - mouseCordinates.current.y, rect1.x - mouseCordinates.current.x) * 180 / Math.PI;
+            leftKingLeftEye.current.style.transform = `rotate(${angleLeftKingLeftEye}deg)`;
+
+            const rect2 = leftKingLeftEye.current.getBoundingClientRect();
+            const angleLeftKingRightEye:number = Math.atan2(rect2.y - mouseCordinates.current.y, rect2.x - mouseCordinates.current.x) * 180 / Math.PI;
+            leftKingRightEye.current.style.transform = `rotate(${angleLeftKingRightEye}deg)`;
+
+            const rect3 = leftKingLeftEye.current.getBoundingClientRect();
+            const angleRightKingLeftEye:number = Math.atan2(rect3.y - mouseCordinates.current.y, rect3.x - mouseCordinates.current.x) * 180 / Math.PI;
+            leftKingLeftEye.current.style.transform = `rotate(${angleRightKingLeftEye}deg)`;
+
+            const rect4 = leftKingLeftEye.current.getBoundingClientRect();
+            const angleRightKingRighttEye:number = Math.atan2(rect4.y - mouseCordinates.current.y, rect4.x - mouseCordinates.current.x) * 180 / Math.PI;
+            leftKingLeftEye.current.style.transform = `rotate(${angleRightKingRighttEye}deg)`;
+        }
+    }
     useEffect(()=>{ 
 
         randomizeCards();
@@ -74,6 +101,7 @@ const Main:React.FC = ()=>{
             mouseCordinates.current.x = event.clientX;
             mouseCordinates.current.y = event.clientY;
 
+            rotateKingsEyes();
         })
 
         setIsLoaded(true);
@@ -94,14 +122,10 @@ const Main:React.FC = ()=>{
         <h1>Joker Game</h1>
         <button>Play now</button>
         <div className='king_holder left'>
-            <img src='cards/king.png'></img>
-            <img className = "left_eye" src='cards/eye.png'></img>
-            <img className = "right_eye" src='cards/eye.png'></img>
+            <KingWithMovingEyes />
         </div>
         <div className='king_holder right'>
-            <img src='cards/king.png'></img>
-            <img className = "left_eye" src='cards/eye.png'></img>
-            <img className = "right_eye" src='cards/eye.png'></img>
+            <KingWithMovingEyes />
         </div>
     </div>
     )
