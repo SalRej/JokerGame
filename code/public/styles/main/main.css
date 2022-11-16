@@ -5,6 +5,7 @@
 }
 
 .background .falling_card {
+  z-index: 1;
   position: absolute;
   -webkit-box-shadow: white 0px 5px 15px;
           box-shadow: white 0px 5px 15px;
@@ -45,25 +46,61 @@
           animation: falling 6s normal linear infinite;
 }
 
+.background h1 {
+  z-index: 2;
+  color: orange;
+  position: relative;
+  top: 25%;
+  font-size: 60px;
+  text-align: center;
+}
+
+.background button {
+  z-index: 2;
+  font-weight: bold;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 40%;
+  background-color: #f1b32f;
+  border: 3px solid black;
+  font-size: 24px;
+  padding: 1em 3em 1em 3em;
+  border-radius: 11px;
+}
+
+.background button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.background .circle_around_mouse {
+  position: absolute;
+  background-color: white;
+  opacity: 0.08;
+  border-radius: 50%;
+}
+
 @-webkit-keyframes falling {
   0% {
-    -webkit-transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
-            transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+    -webkit-transform: translateY(0%) rotate3d(1, 1, 0, var(--rotateAngleStart));
+            transform: translateY(0%) rotate3d(1, 1, 0, var(--rotateAngleStart));
   }
   100% {
-    -webkit-transform: translateY(100vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
-            transform: translateY(100vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+    -webkit-transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+            transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
   }
 }
 
 @keyframes falling {
   0% {
-    -webkit-transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
-            transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+    -webkit-transform: translateY(0%) rotate3d(1, 1, 0, var(--rotateAngleStart));
+            transform: translateY(0%) rotate3d(1, 1, 0, var(--rotateAngleStart));
   }
   100% {
-    -webkit-transform: translateY(100vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
-            transform: translateY(100vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+    -webkit-transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+            transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
   }
 }
 /*# sourceMappingURL=main.css.map */

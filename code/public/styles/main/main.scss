@@ -3,9 +3,10 @@
     width: 100vw;
     height: 100vh;
     .falling_card{
+        z-index: 1;
         position: absolute;
-        // height: 4em;
         box-shadow: rgb(255, 255, 255) 0px 5px 15px;
+
         &:nth-child(2n) { 
             --rotateAngleStart:90deg;
             --rotateAngleEnd:180deg;
@@ -32,13 +33,44 @@
             animation:falling 6s normal linear infinite
         }
     }
+    h1{
+        z-index: 2;
+        color:orange;
+        position: relative;
+        top:25%;
+        font-size: 60px;
+        text-align: center;        
+    }
+    button{
+        z-index: 2;
+        font-weight: bold;
+        position: relative; 
+        left: 50%;
+        transform: translateX(-50%);
+        top:40%;
+        background-color: rgb(241,179,47);
+        border:3px solid black;
+        font-size: 24px;
+        padding:1em 3em 1em 3em;
+        border-radius: 11px;
+        &:hover{
+            opacity: 0.9;
+            cursor: pointer;
+        }
+    }
+    .circle_around_mouse{
+        position: absolute;
+        background-color: white;
+        opacity: 0.08;
+        border-radius: 50%;
+    }
 }
 
 @keyframes falling{
     0%{
-        transform: translateY(0) rotate3d(1, 1, 0, var(--rotateAngleStart));
+        transform: translateY(0%) rotate3d(1, 1, 0, var(--rotateAngleStart));
     }
     100%{
-        transform: translateY(100vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
+        transform: translateY(200vh) rotate3d(1, 1, 0, var(--rotateAngleEnd));
     }
 }

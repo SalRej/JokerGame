@@ -1,16 +1,24 @@
-import React , { useEffect , useState}from 'react'
+import React , { useEffect , useState , useRef}from 'react'
 
 const Main:React.FC = ()=>{
 
+    interface Cordinates{
+        x:number,
+        y:number
+    }
+
     const [cardImageUrls,setCardImageUrls] = useState<string[]>([]);
     const [isLoaded,setIsLoaded] = useState<boolean>(false);
+    const opacityInterval = useRef<null|number>(null);
+    const mouseCordinates = useRef<Cordinates>({x:0,y:0});
+    const circleAroundMouse = useRef<HTMLDivElement>(null);
 
     useEffect(()=>{
 
         //load n random card images
         const urls:string[] = [];
         const types:string[] = ["Spades","Hearts","Clubs","Ace"];
-        for(let i = 0; i <60;i++){
+        for(let i = 0; i <100;i++){
 
             const randomTypeNumber:number = Math.floor(Math.random()*3);
             const currentType:string = types[randomTypeNumber];
@@ -25,8 +33,35 @@ const Main:React.FC = ()=>{
         const cardImages = document.querySelectorAll<HTMLElement>('.falling_card');
         cardImages.forEach(image=>{
             image.style.left=(Math.random()*window.innerWidth).toString() + 'px';
-            image.style.top=(0 - (Math.random()*window.innerHeight)).toString() + 'px';
+            image.style.top=( 0 - (Math.random()*window.innerHeight)).toString() + 'px';
             image.style.height=((Math.random()*4)+1).toString() + 'em';
+        })
+
+        if(opacityInterval.current!=null){
+            clearInterval(opacityInterval.current);
+        }
+
+        opacityInterval.current = setInterval(()=>{
+            changeOpacity(cardImages)
+        },10);
+    }
+
+    const changeOpacity = (cardImages:NodeListOf<HTMLElement>)=>{
+        const x:number = mouseCordinates.current.x;
+        const y:number = mouseCordinates.current.y;
+
+        cardImages.forEach(image=>{
+            var rect = image.getBoundingClientRect();
+
+            const imageX:number = rect.x;
+            const imageY:number = rect.y;
+            const dist = Math.sqrt(Math.pow(x-imageX,2)+Math.pow(y-imageY,2));
+
+            if(dist<window.innerWidth/5){
+                image.style.opacity="1";
+            }else{
+                image.style.opacity="0.5"
+            }
         })
     }
     useEffect(()=>{ 
@@ -35,6 +70,25 @@ const Main:React.FC = ()=>{
         window.addEventListener('resize',()=>{
             randomizeCards();
         })
+        if(circleAroundMouse.current!=null){
+            const diameter:number = (window.innerHeight/3)*2;
+            circleAroundMouse.current.style.width = diameter +"px";
+            circleAroundMouse.current.style.height = diameter +"px";
+        }
+
+        window.addEventListener("mousemove",(event)=>{
+            mouseCordinates.current.x = event.clientX;
+            mouseCordinates.current.y = event.clientY;
+            if(circleAroundMouse.current!=null){
+                const radius:number = (window.innerHeight/3);
+                const x:number = mouseCordinates.current.x - radius;
+                const y:number = mouseCordinates.current.y - radius;
+                
+                circleAroundMouse.current.style.top = y + "px";
+                circleAroundMouse.current.style.left = x + "px";
+            }
+        })
+
         setIsLoaded(true);
     },[cardImageUrls]);
 
@@ -50,6 +104,9 @@ const Main:React.FC = ()=>{
                 return(<img className="falling_card" src={url} key={index}></img>)
             })
         }
+        <h1>Joker Game</h1>
+        <button>Play now</button>
+        <div ref={circleAroundMouse} className='circle_around_mouse'></div>
     </div>
     )
 }
