@@ -58,12 +58,6 @@
             cursor: pointer;
         }
     }
-    .circle_around_mouse{
-        position: absolute;
-        background-color: white;
-        opacity: 0.08;
-        border-radius: 50%;
-    }
 }
 
 @keyframes falling{

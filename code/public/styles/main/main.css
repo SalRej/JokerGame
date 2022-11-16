@@ -75,13 +75,6 @@
   cursor: pointer;
 }
 
-.background .circle_around_mouse {
-  position: absolute;
-  background-color: white;
-  opacity: 0.08;
-  border-radius: 50%;
-}
-
 @-webkit-keyframes falling {
   0% {
     -webkit-transform: translateY(0%) rotate3d(1, 1, 0, var(--rotateAngleStart));
