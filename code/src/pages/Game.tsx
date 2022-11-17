@@ -3,7 +3,7 @@ import { useAppSelector , useAppDispatch} from '../redux/hooks';
 import {givePlayerCard} from '../redux/reducers/players';
 import { removeNumberOfCards} from '../redux/reducers/deck';
 import PlayerHand from '../components/PlayerHand';
-const NUMBER_OF_CARDS_IN_HAND = 13;
+const NUMBER_OF_CARDS_IN_HAND = 7;
 function Game(){
 
     const players = useAppSelector(state => state.players);
@@ -29,12 +29,17 @@ function Game(){
     },[])
 
     return (
-        <div>
-            {
-                players.map(player=>{
-                    return <PlayerHand player={player}/>
-                })
-            }
+        <div className='game_holder'>
+            <div className='board'>
+                {
+                    players.map(player=>{
+                        return <PlayerHand player={player}/>
+                    })
+                }
+            </div>
+            <div className='controls'>
+                
+            </div>
         </div>
     )
 }

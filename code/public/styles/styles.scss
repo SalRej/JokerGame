@@ -9,3 +9,7 @@ body{
     overflow-x: hidden;
 }
 @import "./main/main.css";
+@import "./game/playerHand/player_hand.css";
+@import "./game/board/boards.css";
+@import "./game/controls/controls.css";
+@import "./game/gameHolder/game_holder.css";
