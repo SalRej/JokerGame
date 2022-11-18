@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,CAAA;EACF,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,IAAI;CACf",
+    "mappings": "AAAA,AAAA,MAAM,CAAA;EACF,gBAAgB,EAAE,KAAK;EACvB,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,IAAI;EACZ,QAAQ,EAAE,QAAQ;EAClB,QAAQ,EAAE,MAAM;CACnB",
     "sources": [
         "boards.scss"
     ],

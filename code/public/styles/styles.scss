@@ -5,11 +5,18 @@
 }
 
 body{
-    // overflow-y: hidden;
+    overflow-y: hidden;
     overflow-x: hidden;
+}
+
+.form_test{
+    position: relative;
+    z-index: 10;;
+    background-color: blue;
 }
 @import "./main/main.css";
 @import "./game/playerHand/player_hand.css";
 @import "./game/board/boards.css";
 @import "./game/controls/controls.css";
 @import "./game/gameHolder/game_holder.css";
+@import "./game/gameHolder/combination_deck_holder.css";

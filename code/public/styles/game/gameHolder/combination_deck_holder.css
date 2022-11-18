@@ -1,0 +1,15 @@
+.combination_deck_holder {
+  background-color: white;
+  width: 60%;
+  height: 40%;
+  position: absolute;
+  left: 20%;
+  top: 20%;
+}
+
+.combination_deck_holder .deck {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+/*# sourceMappingURL=combination_deck_holder.css.map */

@@ -6,7 +6,9 @@
     .cards_holder{
         display: flex;
         justify-content: center;
+        transform: rotateZ(4deg);
     }
+
     img{
         --img-width:calc(100%/8);
         width:var(--img-width);
@@ -15,7 +17,7 @@
         &:hover{
             cursor:move;
             z-index: 1;
-            transform: translateY(-50%);
+            transform: translateY(-100%) !important;
         }
     }
     
@@ -62,25 +64,48 @@
     }
 
     img[data-close-to-middle="6.5"],img[data-close-to-middle="6"]{
-        transform: rotateZ(-50deg) translateY(-5%);
+        transform: rotateZ(-50deg) translateY(10%);
     }
     img[data-close-to-middle="6.5"] ~ img[data-close-to-middle="6.5"],img[data-close-to-middle="6"] ~ img[data-close-to-middle="6"]{
-        transform:rotateZ(50deg) translateY(-5%);
+        transform:rotateZ(50deg) translateY(10%);
     }
 }
 
 .ai_player{
+    text-align: center;
     .cards_holder{
         display: flex;
+        justify-content: center;
     }
     img{
-        width: 5em;
+        $img-width:70vw/15;
+        width:#{$img-width};
+        $left-margin:($img-width/1.8)*(-1);
+        margin-left:#{$left-margin}
     }
 }
 
-.player_1{
-    position: relative;
+.player_1{ 
+    width: 100vh;
+    position:absolute;
     top:0;
-    right:0;
-    background-color: blue;
+    right:-4%;
+    transform-origin: top right;
+    transform: rotateZ(-90deg) translateY(-100%);
+}
+
+.player_2{
+    width: 100vh;
+    position: absolute;
+    top:-5%;
+    left:50%;
+    transform: translateX(-50%);
+}
+.player_3{
+    width: 100vh;
+    position: absolute;
+    top:0;
+    left:-4%;
+    transform-origin: top left;
+    transform: rotateZ(90deg) translateY(-100%);
 }

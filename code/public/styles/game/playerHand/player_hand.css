@@ -12,6 +12,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transform: rotateZ(4deg);
+          transform: rotateZ(4deg);
 }
 
 .main_player img {
@@ -25,8 +27,8 @@
 .main_player img:hover {
   cursor: move;
   z-index: 1;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -webkit-transform: translateY(-100%) !important;
+          transform: translateY(-100%) !important;
 }
 
 .main_player img[data-close-to-middle="0.5"], .main_player img[data-close-to-middle="0"] {
@@ -90,29 +92,61 @@
 }
 
 .main_player img[data-close-to-middle="6.5"], .main_player img[data-close-to-middle="6"] {
-  -webkit-transform: rotateZ(-50deg) translateY(-5%);
-          transform: rotateZ(-50deg) translateY(-5%);
+  -webkit-transform: rotateZ(-50deg) translateY(10%);
+          transform: rotateZ(-50deg) translateY(10%);
 }
 
 .main_player img[data-close-to-middle="6.5"] ~ img[data-close-to-middle="6.5"], .main_player img[data-close-to-middle="6"] ~ img[data-close-to-middle="6"] {
-  -webkit-transform: rotateZ(50deg) translateY(-5%);
-          transform: rotateZ(50deg) translateY(-5%);
+  -webkit-transform: rotateZ(50deg) translateY(10%);
+          transform: rotateZ(50deg) translateY(10%);
+}
+
+.ai_player {
+  text-align: center;
 }
 
 .ai_player .cards_holder {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .ai_player img {
-  width: 5em;
+  width: 4.66667vw;
+  margin-left: -2.59259vw;
 }
 
 .player_1 {
-  position: relative;
+  width: 100vh;
+  position: absolute;
   top: 0;
-  right: 0;
-  background-color: blue;
+  right: -4%;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transform: rotateZ(-90deg) translateY(-100%);
+          transform: rotateZ(-90deg) translateY(-100%);
+}
+
+.player_2 {
+  width: 100vh;
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.player_3 {
+  width: 100vh;
+  position: absolute;
+  top: 0;
+  left: -4%;
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  -webkit-transform: rotateZ(90deg) translateY(-100%);
+          transform: rotateZ(90deg) translateY(-100%);
 }
 /*# sourceMappingURL=player_hand.css.map */

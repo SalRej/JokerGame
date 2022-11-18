@@ -16,7 +16,7 @@ function StartGameForm() {
         }
     }
     return (
-        <div style={{color:"white", backgroundColor:"red"}}>
+        <div className='form_test'>
 
             <label htmlFor="number_players">Choose number of players:</label>
             <select ref={numberOfPlayersInput} id="number_players">
@@ -25,9 +25,9 @@ function StartGameForm() {
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
-            <p onClick={startGame}>
+            <button onClick={startGame}>
                 Start
-            </p>
+            </button>
         </div>
     )
 }

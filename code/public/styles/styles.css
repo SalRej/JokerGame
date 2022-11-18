@@ -3,6 +3,7 @@
 @import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\board\boards.css);
 @import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\controls\controls.css);
 @import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\gameHolder\game_holder.css);
+@import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\gameHolder\combination_deck_holder.css);
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +11,13 @@
 }
 
 body {
+  overflow-y: hidden;
   overflow-x: hidden;
+}
+
+.form_test {
+  position: relative;
+  z-index: 10;
+  background-color: blue;
 }
 /*# sourceMappingURL=styles.css.map */

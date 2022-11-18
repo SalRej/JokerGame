@@ -6,7 +6,9 @@ interface Props{
 function PlayerHand({player}:Props) {
     return (
         <div className={player.id===0?'main_player':'ai_player' + ` player_${player.id}`}>
-            <h1>{player.name}</h1>
+            {
+                (player.id !=2 && player.id!=0)&& <p>{player.name}</p>   
+            }
             <div className='cards_holder'>
                 {
                     player.hand.map((card,index)=>{
@@ -24,6 +26,9 @@ function PlayerHand({player}:Props) {
                     })
                 }
             </div>
+            {
+                player.id ===2 && <p>{player.name}</p>   
+            }
         </div>
     )
 }
