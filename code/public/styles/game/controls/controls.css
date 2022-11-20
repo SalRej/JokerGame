@@ -3,4 +3,24 @@
   height: 100%;
   background-color: red;
 }
+
+.controls .create_combination_holder {
+  background-color: blue;
+  width: 80%;
+  margin: auto;
+  margin-top: 1em;
+}
+
+.controls .create_combination_holder .new_combination, .controls .create_combination_holder .combination {
+  width: 100;
+  height: 5em;
+  background-color: white;
+  margin-bottom: 1em;
+  overflow-x: scroll;
+  max-height: 5em;
+}
+
+.controls .create_combination_holder .new_combination img, .controls .create_combination_holder .combination img {
+  height: 100%;
+}
 /*# sourceMappingURL=controls.css.map */

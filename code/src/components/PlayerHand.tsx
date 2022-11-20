@@ -58,6 +58,7 @@ function PlayerHand({player}:Props) {
                             const middlePosition:number = player.hand.length/2;
                             const howCloseToMiddle = Math.abs(index-middlePosition);
                             return(
+                                card.isInHand===true &&
                                 <img
                                     className='draggable'
                                     data-rotation={index}

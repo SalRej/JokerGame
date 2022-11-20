@@ -20,7 +20,8 @@ export const deckSlice = createSlice({
                         id:cardId,
                         value:j,
                         type:currentType,
-                        imgUrl:`cards/${currentType}${j}.png`
+                        imgUrl:`cards/${currentType}${j}.png`,
+                        isInHand:true
                     }
                     cardId++;
                     //push 1 card two times becous the game has 2 deck of cards
@@ -31,7 +32,8 @@ export const deckSlice = createSlice({
                 value:Infinity,
                 type:"Joker",
                 imgUrl:`cards/Joker.png`,
-                id:999
+                id:999,
+                isInHand:true
             }
             state.push(card,card);
         },

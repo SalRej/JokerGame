@@ -55,7 +55,8 @@ const DeckAndCombinations = ({turn,setTurn}:Props) => {
                 value:value,
                 type:type,
                 imgUrl:imgUrl,
-                id:id
+                id:id,
+                isInHand:true
             }
     
             dispatch(putCardInPile(dropedCard));

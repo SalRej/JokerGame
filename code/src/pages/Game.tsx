@@ -4,6 +4,7 @@ import {givePlayerCard} from '../redux/reducers/players';
 import { removeNumberOfCards} from '../redux/reducers/deck';
 import PlayerHand from '../components/PlayerHand';
 import DeckAndCombinations from '../components/DeckAndCombinations';
+import Controls from '../components/Controls';
 const NUMBER_OF_CARDS_IN_HAND = 13;
 function Game(){
 
@@ -41,9 +42,7 @@ function Game(){
                     })
                 }
             </div>
-            <div className='controls'>
-                
-            </div>
+            <Controls />
         </div>
     )
 }

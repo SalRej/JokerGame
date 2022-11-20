@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import Card from '../../interfaces/Card';
+import Combination from '../../interfaces/Combination';
 import Player from '../../interfaces/Player';
-
 const initialState:Player[] = [];
 
 export const playersSlice = createSlice({
@@ -13,7 +13,8 @@ export const playersSlice = createSlice({
                 const newPlayer:Player={
                     hand:[],
                     id:i,
-                    name:"Player "+i
+                    name:"Player "+i,
+                    combinations:[]
                 }
                 state.push(newPlayer);
             }
@@ -54,10 +55,43 @@ export const playersSlice = createSlice({
             if(cardToMove!=null){
                 state[0].hand.splice(placeToPutIndex,0,cardToMove);
             }
-        }
+        },
+        createNewCombination:(state,action):void =>{
+            const {cardToAdd} = action.payload;
+            const cardArr:Card[] = [cardToAdd];
+
+            const newCombination:Combination={
+                id:state[0].combinations.length+1,
+                value:cardToAdd.value,
+                isOnTable:false,
+                cards:cardArr
+            }
+            state[0].combinations = [...state[0].combinations,newCombination];
+            state[0].hand = state[0].hand.filter((card:Card)=>card.id!=cardToAdd.id);
+        },
+        addCardInCombination:(state,action):void=>{
+            const {newCard,combinationId} = action.payload;
+            const currentCombination = state[0].combinations.find((combination:Combination)=>{
+                return combination.id === combinationId;
+            })
+
+            currentCombination!.cards.push(newCard);
+            currentCombination!.value=currentCombination!.value+newCard.value;
+            state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
+        },
+        
     }
 
 })
 
-export const {setNumberOfPlayers , resetPlayers, givePlayerCard , removeCardFromPlayer ,rearangeCardsInHand} = playersSlice.actions;
+export const {
+    setNumberOfPlayers,
+    resetPlayers,
+    givePlayerCard,
+    removeCardFromPlayer,
+    rearangeCardsInHand,
+    createNewCombination,
+    addCardInCombination,
+} = playersSlice.actions;
+
 export default playersSlice.reducer;
