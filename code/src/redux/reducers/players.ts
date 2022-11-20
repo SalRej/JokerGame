@@ -88,6 +88,28 @@ export const playersSlice = createSlice({
                 currentCombination!.cards.push(newCard);
                 currentCombination!.value=currentCombination!.value+newCard.value;
                 state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
+            }else if(isAllSameValue===false){
+                let isSameType:boolean = true;
+
+                currentCombination?.cards.forEach((card:Card)=>{
+                    if(newCard.type!=card.type){
+                        isSameType=false;
+                    }
+                })
+
+                if(isSameType===true){
+                    const firstCard:Card = currentCombination!.cards[0];
+                    const lastCard:Card = currentCombination!.cards[currentCombination!.cards.length-1];
+
+                    if(newCard.value === firstCard.value-1 || newCard.value === lastCard.value+1){
+                        currentCombination!.cards.push(newCard);
+                        currentCombination!.value=currentCombination!.value+newCard.value;
+                        state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
+                        currentCombination?.cards.sort((a,b):number=>{
+                            return a.value-b.value;
+                        })
+                    }
+                }
             }
         },
         
