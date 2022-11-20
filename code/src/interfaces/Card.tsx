@@ -3,7 +3,6 @@ interface Card{
     value:number,
     type:string,
     imgUrl:string,
-    isInHand:boolean
 }
 
 export default Card;
