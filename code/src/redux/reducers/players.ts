@@ -23,6 +23,10 @@ export const playersSlice = createSlice({
         givePlayerCard:(state:Player[],action)=>{
             const{id,card} = action.payload;
             state[id].hand.push(card);
+        },
+        aiMakeMove:(state,action)=>{
+            const {id,drawnCard} = action.payload;
+            state[id]
         }
     }
 
