@@ -34,10 +34,30 @@ export const playersSlice = createSlice({
             state[playerId].hand = state[playerId].hand.filter((card:Card)=>{
                 return card.id!=cardId
             })
+        },
+        rearangeCardsInHand:(state,action):void=>{
+            const {cardToMoveId,cardBeforeId} = action.payload;
+
+            let cardToMove:Card|null = null;
+            let placeToPutIndex:number = -1;
+            state[0].hand = state[0].hand.filter((card:Card,index:number)=>{
+                if(card.id === cardToMoveId){
+                    cardToMove=card;
+                }
+                
+                if(card.id === cardBeforeId){
+                    placeToPutIndex=index;
+                }
+                return card.id != cardToMoveId;
+            })
+
+            if(cardToMove!=null){
+                state[0].hand.splice(placeToPutIndex,0,cardToMove);
+            }
         }
     }
 
 })
 
-export const {setNumberOfPlayers , resetPlayers, givePlayerCard , removeCardFromPlayer} = playersSlice.actions;
+export const {setNumberOfPlayers , resetPlayers, givePlayerCard , removeCardFromPlayer ,rearangeCardsInHand} = playersSlice.actions;
 export default playersSlice.reducer;

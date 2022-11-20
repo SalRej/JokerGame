@@ -88,7 +88,7 @@ const DeckAndCombinations = ({turn,setTurn}:Props) => {
             onDragOver={cancelEvent}
         >
             <div className='wrapper'>
-                {   cardsPile[0]!=null && 
+                {
                     cardsPile.map((card:Card,index:number)=>{
                         return(<img src={card.imgUrl} key={index}>
                         </img>)
