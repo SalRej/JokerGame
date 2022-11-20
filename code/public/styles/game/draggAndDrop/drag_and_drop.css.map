@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAA;EACL,OAAO,EAAE,GAAG;CACf",
+    "sources": [
+        "drag_and_drop.scss"
+    ],
+    "names": [],
+    "file": "drag_and_drop.css"
+}

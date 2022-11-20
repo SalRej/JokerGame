@@ -11,4 +11,21 @@
         height: 100px;
         background-color: red;
     }
+    .deck_pile{
+    
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        display: flex;
+        .wrapper{
+            // width: 100%;
+            // height: 100%;
+            // // margin-left:99px;
+            img{
+                margin-left:-99%;
+                width: 100%;
+                transform: translateX(100%);
+            }
+        }
+    }
 }

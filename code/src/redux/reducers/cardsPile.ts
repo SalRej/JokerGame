@@ -7,11 +7,12 @@ export const cardsPileSlice = createSlice({
     name:'cardsPile',
     initialState:initialState,
     reducers:{
-        putCardInPile:(state,action)=>{
-            const {card} = action.payload;
+        putCardInPile:(state:Card[],action):void=>{
+            const card = action.payload;
+            console.log(action);
             state.push(card);
         },
-        removeTopCardFromPile:(state)=>{
+        removeTopCardFromPile:(state:Card[]):void=>{
             state.pop();
         }
     }

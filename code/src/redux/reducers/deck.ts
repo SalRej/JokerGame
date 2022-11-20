@@ -11,16 +11,18 @@ export const deckSlice = createSlice({
             
             let currentType:string="";
             const types:string[] = ["Spades","Hearts","Clubs","Ace"];
-
+            let cardId:number = 0;
             for(let i = 0; i<4 ;i++){
                 currentType = types[i];
 
                 for(let j = 1;j<14;j++){
                     const card:Card = {
+                        id:cardId,
                         value:j,
                         type:currentType,
                         imgUrl:`cards/${currentType}${j}.png`
                     }
+                    cardId++;
                     //push 1 card two times becous the game has 2 deck of cards
                     state.push(card,card);
                 }
@@ -28,7 +30,8 @@ export const deckSlice = createSlice({
             const card:Card = {
                 value:Infinity,
                 type:"Joker",
-                imgUrl:`cards/Joker.png`
+                imgUrl:`cards/Joker.png`,
+                id:999
             }
             state.push(card,card);
         },

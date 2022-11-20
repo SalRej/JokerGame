@@ -4,6 +4,7 @@
 @import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\controls\controls.css);
 @import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\gameHolder\game_holder.css);
 @import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\gameHolder\combination_deck_holder.css);
+@import url(c:\Users\sa\Desktop\folders\Proekti\JokerGame\code\public\styles\game\draggAndDrop\drag_and_drop.css);
 * {
   margin: 0;
   padding: 0;

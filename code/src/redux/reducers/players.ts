@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import Card from '../../interfaces/Card';
 import Player from '../../interfaces/Player';
 
 const initialState:Player[] = [];
@@ -7,7 +8,7 @@ export const playersSlice = createSlice({
     name:"players",
     initialState,
     reducers:{
-        setNumberOfPlayers:(state:Player[],action)=>{
+        setNumberOfPlayers:(state:Player[],action):void=>{
             for(let i = 0;i<action.payload;i++){
                 const newPlayer:Player={
                     hand:[],
@@ -17,20 +18,26 @@ export const playersSlice = createSlice({
                 state.push(newPlayer);
             }
         },
-        resetPlayers:()=>{
+        resetPlayers:():Player[]=>{
             return initialState;
         },
-        givePlayerCard:(state:Player[],action)=>{
+        givePlayerCard:(state:Player[],action):void=>{
             const{id,card} = action.payload;
             state[id].hand.push(card);
         },
-        aiMakeMove:(state,action)=>{
+        aiMakeMove:(state,action):void=>{
             const {id,drawnCard} = action.payload;
             state[id]
+        },
+        removeCardFromPlayer:(state,action):void=>{
+            const {playerId,cardId} = action.payload;
+            state[playerId].hand = state[playerId].hand.filter((card:Card)=>{
+                return card.id!=cardId
+            })
         }
     }
 
 })
 
-export const {setNumberOfPlayers , resetPlayers, givePlayerCard} = playersSlice.actions;
+export const {setNumberOfPlayers , resetPlayers, givePlayerCard , removeCardFromPlayer} = playersSlice.actions;
 export default playersSlice.reducer;

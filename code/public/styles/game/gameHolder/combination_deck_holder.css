@@ -12,4 +12,20 @@
   height: 100px;
   background-color: red;
 }
+
+.combination_deck_holder .deck_pile {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.combination_deck_holder .deck_pile .wrapper img {
+  margin-left: -99%;
+  width: 100%;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
 /*# sourceMappingURL=combination_deck_holder.css.map */

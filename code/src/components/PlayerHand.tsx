@@ -4,6 +4,15 @@ interface Props{
     player:Player
 }
 function PlayerHand({player}:Props) {
+
+    const addDraggingClass = (event:React.DragEvent<HTMLImageElement>):void =>{
+        const img:HTMLImageElement = event.target as HTMLImageElement;
+        img.classList.add('dragging');
+    }
+    const removeDraggingClass = (event:React.DragEvent<HTMLImageElement>):void =>{
+        const img:HTMLImageElement = event.target as HTMLImageElement;
+        img.classList.remove('dragging');
+    }
     return (
         <div className={player.id===0?'main_player':'ai_player' + ` player_${player.id}`}>
             {
@@ -17,7 +26,20 @@ function PlayerHand({player}:Props) {
                             const howCloseToMiddle = Math.abs(index-middlePosition);
                             console.log(howCloseToMiddle); 
                             return(
-                                <img data-rotation={index} data-close-to-middle={howCloseToMiddle} draggable={true} src={card.imgUrl} key={index}></img>
+                                <img
+                                    data-rotation={index}
+                                    data-close-to-middle={howCloseToMiddle}
+                                    data-value={card.value}
+                                    data-type={card.type}
+                                    data-url={card.imgUrl}
+                                    data-id={card.id}
+                                    draggable={true}
+                                    src={card.imgUrl}
+                                    key={index}
+                                    onDragStart={addDraggingClass}
+                                    onDragEnd={removeDraggingClass}
+                                >
+                                </img>
                             )
                         }
                         return(

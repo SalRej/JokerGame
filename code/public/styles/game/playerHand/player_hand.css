@@ -27,8 +27,6 @@
 .main_player img:hover {
   cursor: move;
   z-index: 1;
-  -webkit-transform: translateY(-100%) !important;
-          transform: translateY(-100%) !important;
 }
 
 .main_player img[data-close-to-middle="0.5"], .main_player img[data-close-to-middle="0"] {

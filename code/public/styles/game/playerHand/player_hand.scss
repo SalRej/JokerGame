@@ -17,7 +17,9 @@
         &:hover{
             cursor:move;
             z-index: 1;
-            transform: translateY(-100%) !important;
+            // transform: scale(1.2) !important;
+            // opacity: 70%;
+            // transform: translateY(-100%) !important;
         }
     }
     

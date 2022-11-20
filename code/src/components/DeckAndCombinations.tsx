@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useAppSelector , useAppDispatch} from '../redux/hooks';
 import { removeNumberOfCards } from '../redux/reducers/deck';
-import { givePlayerCard } from '../redux/reducers/players';
+import { givePlayerCard , removeCardFromPlayer} from '../redux/reducers/players';
+import { putCardInPile } from '../redux/reducers/cardsPile';
+
 import Card from '../interfaces/Card';
 interface Props{
     turn:number,
@@ -11,12 +13,16 @@ const DeckAndCombinations = ({turn,setTurn}:Props) => {
 
     const deck = useAppSelector(state => state.deck);
     const players = useAppSelector(state => state.players);
+    const cardsPile = useAppSelector(state => state.cardsPile);
     const dispatch = useAppDispatch();
+
     const drawCard = () =>{
         const playerId:number = turn;
-        const card:Card = deck[deck.length-1];
-        dispatch(givePlayerCard({id:playerId,card:card}));
+        const lastCard:Card = deck[deck.length-1];
+
+        dispatch(givePlayerCard({id:playerId,card:lastCard}));
         dispatch(removeNumberOfCards(1));
+
         setTurn((prev:number)=>{
 
             if(prev>=players.length-1){
@@ -28,15 +34,55 @@ const DeckAndCombinations = ({turn,setTurn}:Props) => {
     }
 
     useEffect(()=>{
-        if(turn!=0){
-            drawCard();
-        }
+        // if(turn!=0){
+        //     drawCard();
+        // }
     },[turn]);
 
+    const dropCardInPile = (event:React.DragEvent<HTMLDivElement>):void =>{
+        event.preventDefault();
+
+        const currentlyDragedElement:HTMLImageElement = document.querySelector('.dragging') as HTMLImageElement;
+        const value:number =Number(currentlyDragedElement.dataset.value);
+        const type:string = currentlyDragedElement.dataset.type as string;
+        const imgUrl:string  = currentlyDragedElement.dataset.url as string;
+        const id:number = Number(currentlyDragedElement.dataset.id);
+
+        const dropedCard:Card={
+            value:value,
+            type:type,
+            imgUrl:imgUrl,
+            id:id
+        }
+
+        dispatch(putCardInPile(dropedCard));
+
+        const playerId:number = 0;//main player
+        dispatch(removeCardFromPlayer({playerId:playerId,cardId:dropedCard.id}));
+    }
+
+    const cancelEvent = (event:React.DragEvent<HTMLDivElement>):void=>{
+        event.preventDefault();
+    }
     return (
     <div className='combination_deck_holder'>
         <p>{turn}</p>
         <div className='deck' onClick={drawCard}></div>
+        <div 
+            className='deck_pile'
+            onDrop={dropCardInPile}
+            onDragEnter={cancelEvent}
+            onDragOver={cancelEvent}
+        >
+            <div className='wrapper'>
+                {   cardsPile[0]!=null && 
+                    cardsPile.map((card:Card,index:number)=>{
+                        return(<img src={card.imgUrl} key={index}>
+                        </img>)
+                    })
+                }
+            </div>
+        </div>
     </div>
     )
 }
