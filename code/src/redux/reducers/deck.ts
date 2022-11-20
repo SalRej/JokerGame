@@ -16,15 +16,22 @@ export const deckSlice = createSlice({
                 currentType = types[i];
 
                 for(let j = 1;j<14;j++){
-                    const card:Card = {
+                    const card1:Card = {
                         id:cardId,
                         value:j,
                         type:currentType,
                         imgUrl:`cards/${currentType}${j}.png`,
                     }
                     cardId++;
-                    //push 1 card two times becous the game has 2 deck of cards
-                    state.push(card,card);
+                    const card2:Card = {
+                        id:cardId,
+                        value:j,
+                        type:currentType,
+                        imgUrl:`cards/${currentType}${j}.png`,
+                    }
+                    cardId++;
+                    //push two times becouse the game has 2 deck of cards
+                    state.push(card1,card2);
                 }
             }
             const card:Card = {

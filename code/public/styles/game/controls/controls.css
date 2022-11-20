@@ -13,11 +13,10 @@
 
 .controls .create_combination_holder .new_combination, .controls .create_combination_holder .combination {
   width: 100;
-  height: 5em;
+  height: 7em;
   background-color: white;
   margin-bottom: 1em;
   overflow-x: scroll;
-  max-height: 5em;
 }
 
 .controls .create_combination_holder .new_combination img, .controls .create_combination_holder .combination img {

@@ -75,9 +75,20 @@ export const playersSlice = createSlice({
                 return combination.id === combinationId;
             })
 
-            currentCombination!.cards.push(newCard);
-            currentCombination!.value=currentCombination!.value+newCard.value;
-            state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
+            
+            let isAllSameValue:boolean = true;
+
+            currentCombination!.cards.forEach((card:Card) => {
+                if(card.value!=newCard.value || card.type===newCard.type){
+                    isAllSameValue=false;
+                }
+            });
+
+            if(isAllSameValue===true){
+                currentCombination!.cards.push(newCard);
+                currentCombination!.value=currentCombination!.value+newCard.value;
+                state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
+            }
         },
         
     }
