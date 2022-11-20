@@ -22,43 +22,56 @@ const DeckAndCombinations = ({turn,setTurn}:Props) => {
 
         dispatch(givePlayerCard({id:playerId,card:lastCard}));
         dispatch(removeNumberOfCards(1));
-
-        setTurn((prev:number)=>{
-
-            if(prev>=players.length-1){
-                prev = 0;
-                return prev;
-            }
-            return prev+1;
-        });
     }
 
     useEffect(()=>{
-        // if(turn!=0){
-        //     drawCard();
-        // }
+        if(turn!=0){
+            drawCard();
+            const dropedCard:Card = players[turn].hand[0];
+            dispatch(putCardInPile(dropedCard));
+            dispatch(removeCardFromPlayer({playerId:turn,cardId:dropedCard.id}));
+
+            setTurn((prev:number)=>{
+
+                if(prev>=players.length-1){
+                    prev = 0;
+                    return prev;
+                }
+                return prev+1;
+            });
+        }
     },[turn]);
 
     const dropCardInPile = (event:React.DragEvent<HTMLDivElement>):void =>{
         event.preventDefault();
+        if(turn === 0){
+            const currentlyDragedElement:HTMLImageElement = document.querySelector('.dragging') as HTMLImageElement;
+            const value:number =Number(currentlyDragedElement.dataset.value);
+            const type:string = currentlyDragedElement.dataset.type as string;
+            const imgUrl:string  = currentlyDragedElement.dataset.url as string;
+            const id:number = Number(currentlyDragedElement.dataset.id);
+    
+            const dropedCard:Card={
+                value:value,
+                type:type,
+                imgUrl:imgUrl,
+                id:id
+            }
+    
+            dispatch(putCardInPile(dropedCard));
+    
+            const playerId:number = 0;//main player
+            dispatch(removeCardFromPlayer({playerId:playerId,cardId:dropedCard.id}));
+            //next player turn
+            setTurn((prev:number)=>{
 
-        const currentlyDragedElement:HTMLImageElement = document.querySelector('.dragging') as HTMLImageElement;
-        const value:number =Number(currentlyDragedElement.dataset.value);
-        const type:string = currentlyDragedElement.dataset.type as string;
-        const imgUrl:string  = currentlyDragedElement.dataset.url as string;
-        const id:number = Number(currentlyDragedElement.dataset.id);
-
-        const dropedCard:Card={
-            value:value,
-            type:type,
-            imgUrl:imgUrl,
-            id:id
+                if(prev>=players.length-1){
+                    prev = 0;
+                    return prev;
+                }
+                return prev+1;
+            });
         }
-
-        dispatch(putCardInPile(dropedCard));
-
-        const playerId:number = 0;//main player
-        dispatch(removeCardFromPlayer({playerId:playerId,cardId:dropedCard.id}));
     }
 
     const cancelEvent = (event:React.DragEvent<HTMLDivElement>):void=>{
