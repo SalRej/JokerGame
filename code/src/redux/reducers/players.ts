@@ -88,8 +88,17 @@ export const playersSlice = createSlice({
             const {cardToAdd} = action.payload;
             const cardArr:Card[] = [cardToAdd];
 
+            let id:number = 0;
+            
+            state[0].combinations.forEach((combination:Combination)=>{
+                if(id<combination.id){
+                    id=combination.id;
+                }
+            })
+            id++;
+            
             const newCombination:Combination={
-                id:state[0].combinations.length+1,
+                id:id,
                 value:cardToAdd.value,
                 isOnTable:false,
                 cards:cardArr
