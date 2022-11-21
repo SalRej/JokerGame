@@ -16,7 +16,6 @@ function App() {
   },[]);
 
   useEffect(()=>{
-    console.log(location.pathname)
     if(location.pathname!='/game'){
       dispatch(resetPlayers());
     }

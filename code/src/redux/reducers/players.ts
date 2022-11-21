@@ -2,6 +2,11 @@ import {createSlice} from '@reduxjs/toolkit';
 import Card from '../../interfaces/Card';
 import Combination from '../../interfaces/Combination';
 import Player from '../../interfaces/Player';
+
+import findCombinationById from '../../../scripts/findCombinationById';
+import findCardInCombinations from '../../../scripts/findCardInCombinations';
+import removeCardFromCombination from '../../../scripts/removeCardFromCombination';
+
 const initialState:Player[] = [];
 
 export const playersSlice = createSlice({
@@ -37,30 +42,15 @@ export const playersSlice = createSlice({
                 return card.id!=cardId
             })
 
-            let combinationToRemoveCardFrom:Combination;
-            state[playerId].combinations.forEach((combination:Combination)=>{
-                combination.cards.forEach((card:Card)=>{
-                    if(cardId===card.id){
-                        combinationToRemoveCardFrom=combination;
-                    }
-                })
-            })
+            const combinationAndCard = findCardInCombinations(state[0],cardId);
+            const combinationToRemoveCardFrom = combinationAndCard.combination;
+            const card = combinationAndCard.card;
 
-            //remove card from combination
-            combinationToRemoveCardFrom!.cards = combinationToRemoveCardFrom!.cards.filter((card:Card)=>{
-                return card.id!=cardId;
-            })
+            removeCardFromCombination(state[0],combinationToRemoveCardFrom,card);
 
-            //remove combination if there are no cards left
-            if(combinationToRemoveCardFrom!.cards.length === 0){
-                state[0].combinations = state[0].combinations.filter((combination:Combination)=>{
-                    return combination.cards.length > 0;
-                })
-            }
         },
         rearangeCardsInHand:(state,action):void=>{
             const {cardToMoveId,cardBeforeId} = action.payload;
-
             let cardToMove:Card|null = null;
             let placeToPutIndex:number = -1;
 
@@ -78,28 +68,11 @@ export const playersSlice = createSlice({
 
             if(cardToMove===null){
                 //look for card in combinations
-                let combinationToRemoveCardFrom:Combination;
-                state[0].combinations.forEach((combination:Combination)=>{
-                    combination.cards.forEach((card:Card)=>{
-                        if(card.id === cardToMoveId){
-                            cardToMove=card;
-                            combinationToRemoveCardFrom=combination;
-                        }
-                    })
-                })
+                const combinationAndCard = findCardInCombinations(state[0],cardToMoveId);
+                const combinationToRemoveCardFrom:Combination = combinationAndCard.combination;
+                cardToMove = combinationAndCard.card;
 
-                //remove card from combination
-                combinationToRemoveCardFrom!.cards = combinationToRemoveCardFrom!.cards.filter((card:Card)=>{
-                    return card.id!=cardToMove!.id;
-                })
-
-                //remove combination if there are no cards left
-                if(combinationToRemoveCardFrom!.cards.length === 0){
-                    state[0].combinations = state[0].combinations.filter((combination:Combination)=>{
-                        return combination.cards.length > 0;
-                    })
-                }
-
+                removeCardFromCombination(state[0],combinationToRemoveCardFrom,cardToMove);
             }
             
             if(cardToMove!=null){
@@ -125,31 +98,28 @@ export const playersSlice = createSlice({
                 isOnTable:false,
                 cards:cardArr
             }
+
             state[0].combinations = [...state[0].combinations,newCombination];
             state[0].hand = state[0].hand.filter((card:Card)=>card.id!=cardToAdd.id);
         },
         addCardInCombination:(state,action):void=>{
             const {newCard,combinationId} = action.payload;
-            const currentCombination = state[0].combinations.find((combination:Combination)=>{
-                return combination.id === combinationId;
-            })
+            const currentCombination = findCombinationById(state[0],combinationId);
 
-            
-            let isAllSameValue:boolean = true;
+            let areAllSameValue:boolean = true;
 
             currentCombination!.cards.forEach((card:Card) => {
                 if(card.value!=newCard.value || card.type===newCard.type){
-                    isAllSameValue=false;
+                    areAllSameValue=false;
                 }
             });
 
-            if(isAllSameValue===true){
-
+            if(areAllSameValue===true){
                 currentCombination!.cards.push(newCard);
                 currentCombination!.value=currentCombination!.value+newCard.value;
                 state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
 
-            }else if(isAllSameValue===false){
+            }else if(areAllSameValue===false){
                 let isSameType:boolean = true;
 
                 currentCombination?.cards.forEach((card:Card)=>{

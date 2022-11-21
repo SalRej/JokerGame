@@ -13,6 +13,7 @@ interface Props {
 const DragableImage = ({card,index,howCloseToMiddle,combinationId}:Props) => {
 
     const dispatch = useAppDispatch();
+
     const addDraggingClass = (event:React.DragEvent<HTMLImageElement>):void =>{
         const img:HTMLImageElement = event.target as HTMLImageElement;
         img.classList.add('dragging');
@@ -63,7 +64,6 @@ const DragableImage = ({card,index,howCloseToMiddle,combinationId}:Props) => {
             data-combination-id={combinationId}
             draggable={true}
             src={card.imgUrl}
-            key={index}
             onDragStart={addDraggingClass}
             onDragEnd={removeDraggingClass}
             onDrop={adjustCardPositionInHand}

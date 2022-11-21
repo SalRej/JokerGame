@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '../interfaces/Card';
+import Combination from '../interfaces/Combination';
 import { useAppSelector , useAppDispatch } from '../redux/hooks'
 import { addCardInCombination , createNewCombination} from '../redux/reducers/players';
 import DragableImage from './DragableImage';
@@ -23,15 +24,15 @@ const Controls = () => {
 
     const addToCombination = (event:React.DragEvent<HTMLImageElement>):void=>{
         event.preventDefault();
-        console.log(event);
         const cardImage = document.querySelector<HTMLImageElement>('.dragging')!;
         
         const cardId:number = Number(cardImage.dataset.id);
-
-        const card:Card | undefined = mainPlayer.hand.find((card)=>{
+        
+        let card:Card | undefined;
+        card = mainPlayer.hand.find((card)=>{
             return card.id === cardId;
         })
-
+        
         const imageElement:HTMLImageElement = event.target as HTMLImageElement;
         const combinationId:number =  Number(imageElement.dataset.combinationId);
         
@@ -52,11 +53,11 @@ const Controls = () => {
                 >Drop you cards here to create combination</div>
                 {
                     mainPlayer!=undefined && 
-                    mainPlayer.combinations.map(combination=>{
+                    mainPlayer.combinations.map((combination:Combination,index:number)=>{
                         return(
                         <div
                             className='combination'
-                            // draggable={true}
+                            key={index}
                             onDrop={addToCombination}
                             onDragOver={cancelEvent}
                             onDragLeave={cancelEvent}
@@ -71,11 +72,6 @@ const Controls = () => {
                                             key={index}
                                             combinationId={combination.id}
                                         />
-                                        // <img src={card.imgUrl}
-                                        //     data-combination-id={combination.id}
-                                        //     key={index}
-                                        //     draggable={true}
-                                        // ></img>
                                     )
                                 })
                             }
