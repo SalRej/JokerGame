@@ -85,9 +85,11 @@ export const playersSlice = createSlice({
             });
 
             if(isAllSameValue===true){
+                
                 currentCombination!.cards.push(newCard);
                 currentCombination!.value=currentCombination!.value+newCard.value;
                 state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
+
             }else if(isAllSameValue===false){
                 let isSameType:boolean = true;
 
@@ -105,7 +107,7 @@ export const playersSlice = createSlice({
                         currentCombination!.cards.push(newCard);
                         currentCombination!.value=currentCombination!.value+newCard.value;
                         state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);
-                        currentCombination?.cards.sort((a,b):number=>{
+                        currentCombination!.cards.sort((a,b):number=>{
                             return a.value-b.value;
                         })
                     }

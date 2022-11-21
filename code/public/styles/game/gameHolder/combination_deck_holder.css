@@ -2,30 +2,50 @@
   background-color: white;
   width: 60%;
   height: 40%;
-  position: absolute;
+  position: relative;
   left: 20%;
   top: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.combination_deck_holder .deck {
-  width: 100px;
-  height: 100px;
+.combination_deck_holder .deck_and_pile {
+  height: 100%;
+  width: 6em;
+}
+
+.combination_deck_holder .deck_and_pile .deck {
+  height: 50%;
+  width: 100%;
   background-color: red;
 }
 
-.combination_deck_holder .deck_pile {
-  width: 100px;
-  height: 100px;
+.combination_deck_holder .deck_and_pile .deck_pile {
+  height: 50%;
+  width: 100%;
   background-color: blue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.combination_deck_holder .deck_pile .wrapper img {
+.combination_deck_holder .deck_and_pile .deck_pile .wrapper img {
   margin-left: -99%;
-  width: 100%;
+  height: 100%;
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
+}
+
+.combination_deck_holder .combinations_holder .new_combination {
+  border: 2px black dashed;
+  border-radius: 11px;
+  width: 25%;
+  height: 5em;
+  text-align: center;
+  line-height: 5em;
 }
 /*# sourceMappingURL=combination_deck_holder.css.map */

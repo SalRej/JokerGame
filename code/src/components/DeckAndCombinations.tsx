@@ -79,21 +79,28 @@ const DeckAndCombinations = ({turn,setTurn}:Props) => {
     }
     return (
     <div className='combination_deck_holder'>
-        <p>{turn}</p>
-        <div className='deck' onClick={drawCard}></div>
-        <div 
-            className='deck_pile'
-            onDrop={dropCardInPile}
-            onDragEnter={cancelEvent}
-            onDragOver={cancelEvent}
-        >
-            <div className='wrapper'>
-                {
-                    cardsPile.map((card:Card,index:number)=>{
-                        return(<img src={card.imgUrl} key={index}>
-                        </img>)
-                    })
-                }
+
+        <div className='combinations_holder'>
+            <div className='new_combination'>
+                Drop you combination here
+            </div>
+        </div>
+        <div className='deck_and_pile'>
+            <div className='deck' onClick={drawCard}></div>
+            <div 
+                className='deck_pile'
+                onDrop={dropCardInPile}
+                onDragEnter={cancelEvent}
+                onDragOver={cancelEvent}
+            >
+                <div className='wrapper'>
+                    {
+                        cardsPile.map((card:Card,index:number)=>{
+                            return(<img src={card.imgUrl} key={index}>
+                            </img>)
+                        })
+                    }
+                </div>
             </div>
         </div>
     </div>

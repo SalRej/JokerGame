@@ -43,22 +43,30 @@ const Controls = () => {
         <div className='controls'>
             <p>Your combinations</p>
             <div className='create_combination_holder'>
+                <div 
+                    className='new_combination'
+                    onDrop={createCombination}
+                    onDragOver={cancelEvent}
+                    onDragLeave={cancelEvent}
+                >Drop you cards here to create combination</div>
                 {
                     mainPlayer!=undefined && 
                     mainPlayer.combinations.map(combination=>{
                         return(
                         <div
                             className='combination'
+                            draggable={true}
                             onDrop={addToCombination}
                             onDragOver={cancelEvent}
                             onDragLeave={cancelEvent}
                             data-combination-id={combination.id}
                         >
                             {
-                                combination.cards.map((card:Card)=>{
+                                combination.cards.map((card:Card,index:number)=>{
                                     return(
                                         <img src={card.imgUrl}
-                                        data-combination-id={combination.id}
+                                            data-combination-id={combination.id}
+                                            key={index}
                                         ></img>
                                     )
                                 })
@@ -66,12 +74,6 @@ const Controls = () => {
                         </div>)
                     })
                 }
-                <div 
-                    className='new_combination'
-                    onDrop={createCombination}
-                    onDragOver={cancelEvent}
-                    onDragLeave={cancelEvent}
-                >Drop you cards here to create combination</div>
             </div>
         </div>
     )
