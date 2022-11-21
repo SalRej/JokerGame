@@ -67,6 +67,7 @@ const Controls = () => {
                                         <img src={card.imgUrl}
                                             data-combination-id={combination.id}
                                             key={index}
+                                            draggable={true}
                                         ></img>
                                     )
                                 })

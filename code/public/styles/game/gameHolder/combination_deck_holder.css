@@ -40,6 +40,11 @@
           transform: translateX(100%);
 }
 
+.combination_deck_holder .combinations_holder {
+  width: 100%;
+  background-color: yellow;
+}
+
 .combination_deck_holder .combinations_holder .new_combination {
   border: 2px black dashed;
   border-radius: 11px;
