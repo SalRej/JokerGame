@@ -49,7 +49,6 @@ const DragableImage = ({card,index,howCloseToMiddle,combinationId}:Props) => {
         const draggedImageId:number = Number(draggedImage!.dataset.id);
         const closestElementId:number = Number(closestElement!.dataset.id);
 
-        console.log(draggedImageId,closestElementId)
         dispatch(rearangeCardsInHand({cardToMoveId:draggedImageId,cardBeforeId:closestElementId}));
     }
     return (

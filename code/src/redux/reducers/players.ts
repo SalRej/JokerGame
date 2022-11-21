@@ -32,9 +32,31 @@ export const playersSlice = createSlice({
         },
         removeCardFromPlayer:(state,action):void=>{
             const {playerId,cardId} = action.payload;
+
             state[playerId].hand = state[playerId].hand.filter((card:Card)=>{
                 return card.id!=cardId
             })
+
+            let combinationToRemoveCardFrom:Combination;
+            state[playerId].combinations.forEach((combination:Combination)=>{
+                combination.cards.forEach((card:Card)=>{
+                    if(cardId===card.id){
+                        combinationToRemoveCardFrom=combination;
+                    }
+                })
+            })
+
+            //remove card from combination
+            combinationToRemoveCardFrom!.cards = combinationToRemoveCardFrom!.cards.filter((card:Card)=>{
+                return card.id!=cardId;
+            })
+
+            //remove combination if there are no cards left
+            if(combinationToRemoveCardFrom!.cards.length === 0){
+                state[0].combinations = state[0].combinations.filter((combination:Combination)=>{
+                    return combination.cards.length > 0;
+                })
+            }
         },
         rearangeCardsInHand:(state,action):void=>{
             const {cardToMoveId,cardBeforeId} = action.payload;
@@ -96,7 +118,7 @@ export const playersSlice = createSlice({
                 }
             })
             id++;
-            
+
             const newCombination:Combination={
                 id:id,
                 value:cardToAdd.value,

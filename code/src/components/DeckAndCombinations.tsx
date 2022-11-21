@@ -44,6 +44,7 @@ const DeckAndCombinations = ({turn,setTurn}:Props) => {
 
     const dropCardInPile = (event:React.DragEvent<HTMLDivElement>):void =>{
         event.preventDefault();
+        
         if(turn === 0){
             const currentlyDragedElement:HTMLImageElement = document.querySelector('.dragging') as HTMLImageElement;
             const value:number =Number(currentlyDragedElement.dataset.value);
