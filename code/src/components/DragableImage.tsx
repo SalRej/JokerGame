@@ -6,10 +6,11 @@ import {rearangeCardsInHand} from "../redux/reducers/players";
 interface Props {
     card:Card,
     index:number
-    howCloseToMiddle:number
+    howCloseToMiddle?:number,
+    combinationId?:number
 }
 
-const DragableImage = ({card,index,howCloseToMiddle}:Props) => {
+const DragableImage = ({card,index,howCloseToMiddle,combinationId}:Props) => {
 
     const dispatch = useAppDispatch();
     const addDraggingClass = (event:React.DragEvent<HTMLImageElement>):void =>{
@@ -34,7 +35,7 @@ const DragableImage = ({card,index,howCloseToMiddle}:Props) => {
         let closestOffset:number = Number.NEGATIVE_INFINITY;
         let closestElement:HTMLImageElement | null= null;
 
-        draggableImages.forEach((image:HTMLImageElement,index:number)=>{
+        draggableImages.forEach((image:HTMLImageElement)=>{
             const box = image.getBoundingClientRect();
             const offset:number = x - box.left - box.height/2;
 
@@ -48,6 +49,7 @@ const DragableImage = ({card,index,howCloseToMiddle}:Props) => {
         const draggedImageId:number = Number(draggedImage!.dataset.id);
         const closestElementId:number = Number(closestElement!.dataset.id);
 
+        console.log(draggedImageId,closestElementId)
         dispatch(rearangeCardsInHand({cardToMoveId:draggedImageId,cardBeforeId:closestElementId}));
     }
     return (
@@ -59,6 +61,7 @@ const DragableImage = ({card,index,howCloseToMiddle}:Props) => {
             data-type={card.type}
             data-url={card.imgUrl}
             data-id={card.id}
+            data-combination-id={combinationId}
             draggable={true}
             src={card.imgUrl}
             key={index}

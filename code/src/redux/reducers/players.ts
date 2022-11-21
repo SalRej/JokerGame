@@ -41,6 +41,7 @@ export const playersSlice = createSlice({
 
             let cardToMove:Card|null = null;
             let placeToPutIndex:number = -1;
+
             state[0].hand = state[0].hand.filter((card:Card,index:number)=>{
                 if(card.id === cardToMoveId){
                     cardToMove=card;
@@ -52,6 +53,33 @@ export const playersSlice = createSlice({
                 return card.id != cardToMoveId;
             })
 
+
+            if(cardToMove===null){
+                //look for card in combinations
+                let combinationToRemoveCardFrom:Combination;
+                state[0].combinations.forEach((combination:Combination)=>{
+                    combination.cards.forEach((card:Card)=>{
+                        if(card.id === cardToMoveId){
+                            cardToMove=card;
+                            combinationToRemoveCardFrom=combination;
+                        }
+                    })
+                })
+
+                //remove card from combination
+                combinationToRemoveCardFrom!.cards = combinationToRemoveCardFrom!.cards.filter((card:Card)=>{
+                    return card.id!=cardToMove!.id;
+                })
+
+                //remove combination if there are no cards left
+                if(combinationToRemoveCardFrom!.cards.length === 0){
+                    state[0].combinations = state[0].combinations.filter((combination:Combination)=>{
+                        return combination.cards.length > 0;
+                    })
+                }
+
+            }
+            
             if(cardToMove!=null){
                 state[0].hand.splice(placeToPutIndex,0,cardToMove);
             }
@@ -85,7 +113,7 @@ export const playersSlice = createSlice({
             });
 
             if(isAllSameValue===true){
-                
+
                 currentCombination!.cards.push(newCard);
                 currentCombination!.value=currentCombination!.value+newCard.value;
                 state[0].hand = state[0].hand.filter((card:Card)=>card.id!=newCard.id);

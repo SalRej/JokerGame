@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../interfaces/Card';
 import { useAppSelector , useAppDispatch } from '../redux/hooks'
 import { addCardInCombination , createNewCombination} from '../redux/reducers/players';
+import DragableImage from './DragableImage';
 const Controls = () => {
 
     const dispatch = useAppDispatch();
@@ -55,7 +56,7 @@ const Controls = () => {
                         return(
                         <div
                             className='combination'
-                            draggable={true}
+                            // draggable={true}
                             onDrop={addToCombination}
                             onDragOver={cancelEvent}
                             onDragLeave={cancelEvent}
@@ -64,11 +65,17 @@ const Controls = () => {
                             {
                                 combination.cards.map((card:Card,index:number)=>{
                                     return(
-                                        <img src={card.imgUrl}
-                                            data-combination-id={combination.id}
+                                        <DragableImage 
+                                            card={card}
+                                            index={index}
                                             key={index}
-                                            draggable={true}
-                                        ></img>
+                                            combinationId={combination.id}
+                                        />
+                                        // <img src={card.imgUrl}
+                                        //     data-combination-id={combination.id}
+                                        //     key={index}
+                                        //     draggable={true}
+                                        // ></img>
                                     )
                                 })
                             }
