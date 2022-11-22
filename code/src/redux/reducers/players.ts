@@ -111,8 +111,13 @@ export const playersSlice = createSlice({
       );
     },
     addCardInCombination: (state, action): void => {
-      const { newCard, combinationId } = action.payload;
+      const { newCard, combinationId, combinationIdToRemoveCardFrom } =
+        action.payload;
       const currentCombination = findCombinationById(state[0], combinationId);
+      const combinationToRemoveCardFrom = findCombinationById(
+        state[0],
+        combinationIdToRemoveCardFrom
+      );
 
       let areAllSameValue: boolean = true;
 
@@ -128,6 +133,13 @@ export const playersSlice = createSlice({
         state[0].hand = state[0].hand.filter(
           (card: Card) => card.id != newCard.id
         );
+        if (combinationIdToRemoveCardFrom !== undefined) {
+          removeCardFromCombination(
+            state[0],
+            combinationToRemoveCardFrom,
+            newCard
+          );
+        }
       } else if (areAllSameValue === false) {
         let isSameType: boolean = true;
 
@@ -149,9 +161,18 @@ export const playersSlice = createSlice({
             currentCombination!.cards.push(newCard);
             currentCombination!.value =
               currentCombination!.value + newCard.value;
-            state[0].hand = state[0].hand.filter(
-              (card: Card) => card.id != newCard.id
-            );
+
+            if (combinationIdToRemoveCardFrom !== undefined) {
+              removeCardFromCombination(
+                state[0],
+                combinationToRemoveCardFrom,
+                newCard
+              );
+            } else {
+              state[0].hand = state[0].hand.filter(
+                (card: Card) => card.id != newCard.id
+              );
+            }
             currentCombination!.cards.sort((a, b): number => {
               return a.value - b.value;
             });

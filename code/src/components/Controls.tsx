@@ -6,6 +6,7 @@ import {
   addCardInCombination,
   createNewCombination,
 } from "../redux/reducers/players";
+import findCardInCombinations from "../../scripts/findCardInCombinations";
 import DragableImage from "./DragableImage";
 const Controls = () => {
   const dispatch = useAppDispatch();
@@ -31,15 +32,26 @@ const Controls = () => {
 
     const cardId: number = Number(cardImage.dataset.id);
 
-    const card: Card | undefined = mainPlayer.hand.find((card) => {
+    let card: Card | undefined = mainPlayer.hand.find((card) => {
       return card.id === cardId;
     });
+
+    let combinationIdToRemoveCardFrom: number | undefined;
+    if (card === undefined) {
+      const CardAndCombination = findCardInCombinations(mainPlayer, cardId);
+      card = CardAndCombination.card;
+      combinationIdToRemoveCardFrom = CardAndCombination.combination.id;
+    }
 
     const imageElement: HTMLImageElement = event.target as HTMLImageElement;
     const combinationId: number = Number(imageElement.dataset.combinationId);
 
     dispatch(
-      addCardInCombination({ newCard: card, combinationId: combinationId })
+      addCardInCombination({
+        newCard: card,
+        combinationId: combinationId,
+        combinationIdToRemoveCardFrom: combinationIdToRemoveCardFrom,
+      })
     );
   };
   const cancelEvent = (event: React.DragEvent<HTMLDivElement>): void => {
