@@ -20,6 +20,7 @@ export const playersSlice = createSlice({
           id: i,
           name: "Player " + i,
           combinations: [],
+          points: 0,
         };
         state.push(newPlayer);
       }
@@ -180,6 +181,18 @@ export const playersSlice = createSlice({
         }
       }
     },
+    calculatePoints: (state): void => {
+      let points: number = 0;
+      state[0].combinations.forEach((combination: Combination) => {
+        if (combination.cards.length >= 3) {
+          combination.cards.forEach((card) => {
+            points += card.value;
+          });
+        }
+      });
+
+      state[0].points = points;
+    },
   },
 });
 
@@ -191,6 +204,7 @@ export const {
   rearangeCardsInHand,
   createNewCombination,
   addCardInCombination,
+  calculatePoints,
 } = playersSlice.actions;
 
 export default playersSlice.reducer;

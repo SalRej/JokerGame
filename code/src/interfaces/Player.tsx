@@ -6,5 +6,6 @@ interface Player {
   id: number;
   name: string;
   combinations: Combination[];
+  points: number;
 }
 export default Player;

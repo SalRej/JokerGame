@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
-import { givePlayerCard } from "../redux/reducers/players";
+import { givePlayerCard, calculatePoints } from "../redux/reducers/players";
 import { removeNumberOfCards } from "../redux/reducers/deck";
 import PlayerHand from "../components/PlayerHand";
 import DeckAndCombinations from "../components/DeckAndCombinations";
@@ -30,6 +30,9 @@ function Game() {
     giveCards();
   }, []);
 
+  useEffect(() => {
+    dispatch(calculatePoints());
+  }, [players[0].combinations]);
   return (
     <div className="game_holder">
       <div className="board">

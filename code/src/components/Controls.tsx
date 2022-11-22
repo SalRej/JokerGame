@@ -8,6 +8,8 @@ import {
 } from "../redux/reducers/players";
 import findCardInCombinations from "../../scripts/findCardInCombinations";
 import DragableImage from "./DragableImage";
+import PlayerPoints from "./PlayerPoints";
+
 const Controls = () => {
   const dispatch = useAppDispatch();
   const mainPlayer = useAppSelector((state) => state.players[0]);
@@ -15,8 +17,8 @@ const Controls = () => {
     event: React.DragEvent<HTMLImageElement>
   ): void => {
     event.preventDefault();
-    const cardImage = document.querySelector<HTMLImageElement>(".dragging")!;
 
+    const cardImage = document.querySelector<HTMLImageElement>(".dragging")!;
     const cardId: number = Number(cardImage.dataset.id);
 
     const card: Card | undefined = mainPlayer.hand.find((card) => {
@@ -28,8 +30,8 @@ const Controls = () => {
 
   const addToCombination = (event: React.DragEvent<HTMLImageElement>): void => {
     event.preventDefault();
-    const cardImage = document.querySelector<HTMLImageElement>(".dragging")!;
 
+    const cardImage = document.querySelector<HTMLImageElement>(".dragging")!;
     const cardId: number = Number(cardImage.dataset.id);
 
     let card: Card | undefined = mainPlayer.hand.find((card) => {
@@ -59,6 +61,7 @@ const Controls = () => {
   };
   return (
     <div className="controls">
+      <PlayerPoints />
       <p>Your combinations</p>
       <div className="create_combination_holder">
         <div
