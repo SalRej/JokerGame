@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Table from "../../interfaces/Table";
 import Card from "../../interfaces/Card";
-
-const initialState: Card[] = [];
-
-export const deckSlice = createSlice({
-  name: "deck",
-  initialState,
+const initialState: Table = {
+  deck: [],
+  pile: [],
+  combinations: [],
+};
+const tableSlice = createSlice({
+  initialState: initialState,
+  name: "table",
   reducers: {
-    loadCards: (state: Card[]) => {
+    loadCardsInDeck: (state: Table) => {
       let currentType: string = "";
       const types: string[] = ["Spades", "Hearts", "Clubs", "Ace"];
       let cardId: number = 0;
@@ -30,7 +33,7 @@ export const deckSlice = createSlice({
           };
           cardId++;
           //push two times becouse the game has 2 deck of cards
-          state.push(card1, card2);
+          state.deck.push(card1, card2);
         }
       }
       const card: Card = {
@@ -39,30 +42,37 @@ export const deckSlice = createSlice({
         imgUrl: `cards/Joker.png`,
         id: 999,
       };
-      state.push(card, card);
+      state.deck.push(card, card);
     },
-    shuffleDeck: (state: Card[]) => {
-      let currentIndex = state.length,
+    shuffleDeck: (state: Table) => {
+      let currentIndex = state.deck.length,
         randomIndex;
       while (currentIndex != 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        [state[currentIndex], state[randomIndex]] = [
-          state[randomIndex],
-          state[currentIndex],
+        [state.deck[currentIndex], state.deck[randomIndex]] = [
+          state.deck[randomIndex],
+          state.deck[currentIndex],
         ];
       }
     },
-    removeNumberOfCards: (state, action) => {
+    removeCardsFromDeck: (state, action) => {
       for (let i = 0; i < action.payload; i++) {
-        state.pop();
+        state.deck.pop();
       }
+    },
+    putCardInPile: (state: Table, action): void => {
+      const card = action.payload;
+      state.pile.push(card);
     },
   },
 });
 
-export const { loadCards, shuffleDeck, removeNumberOfCards } =
-  deckSlice.actions;
-
-export default deckSlice.reducer;
+export const {
+  loadCardsInDeck,
+  shuffleDeck,
+  removeCardsFromDeck,
+  putCardInPile,
+} = tableSlice.actions;
+export default tableSlice.reducer;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import DragableImage from "./DragableImage";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import {
@@ -44,8 +44,10 @@ const Combinations = () => {
       combinationIdToRemoveCardFrom = CardAndCombination.combination.id;
     }
 
-    const imageElement: HTMLImageElement = event.target as HTMLImageElement;
-    const combinationId: number = Number(imageElement.dataset.combinationId);
+    const element: HTMLImageElement | HTMLDivElement = event.target as
+      | HTMLImageElement
+      | HTMLDivElement;
+    const combinationId: number = Number(element.dataset.combinationId);
 
     dispatch(
       addCardInCombination({
@@ -54,6 +56,14 @@ const Combinations = () => {
         combinationIdToRemoveCardFrom: combinationIdToRemoveCardFrom,
       })
     );
+  };
+
+  const putCombinationOnTable = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ): void => {
+    const button: HTMLButtonElement = event.target as HTMLButtonElement;
+    const combinationId = button.dataset.combinationId;
+    // dispatch();
   };
   const cancelEvent = (event: React.DragEvent<HTMLDivElement>): void => {
     event.preventDefault();
@@ -77,15 +87,26 @@ const Combinations = () => {
                 <div
                   className="combination"
                   key={index}
+                  data-combination-id={combination.id}
                   onDrop={addToCombination}
                   onDragOver={cancelEvent}
                   onDragLeave={cancelEvent}
-                  data-combination-id={combination.id}
                 >
                   {combination.cards.length >= 3 ? (
                     <p>{combination.value}</p>
                   ) : (
                     <p>0</p>
+                  )}
+
+                  {combination.cards.length >= 3 && mainPlayer.points > 44 ? (
+                    <button
+                      data-combination-id={combination.id}
+                      onClick={putCombinationOnTable}
+                    >
+                      Put on table
+                    </button>
+                  ) : (
+                    ""
                   )}
                   {combination.cards.map((card: Card, index: number) => {
                     return (

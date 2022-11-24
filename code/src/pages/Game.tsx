@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { givePlayerCard, calculatePoints } from "../redux/reducers/players";
-import { removeNumberOfCards } from "../redux/reducers/deck";
+import { removeCardsFromDeck } from "../redux/reducers/table";
 import PlayerHand from "../components/PlayerHand";
 import DeckAndCombinations from "../components/DeckAndCombinations";
 import Controls from "../components/Controls";
 const NUMBER_OF_CARDS_IN_HAND = 13;
 function Game() {
   const players = useAppSelector((state) => state.players);
-  const deck = useAppSelector((state) => state.deck);
+  const deck = useAppSelector((state) => state.table.deck);
   const dispatch = useAppDispatch();
 
   const [turn, setTurn] = useState<number>(0);
@@ -23,7 +23,7 @@ function Game() {
       });
     }
 
-    dispatch(removeNumberOfCards(players.length * NUMBER_OF_CARDS_IN_HAND));
+    dispatch(removeCardsFromDeck(players.length * NUMBER_OF_CARDS_IN_HAND));
   };
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch } from "./redux/hooks";
-import { loadCards, shuffleDeck } from "./redux/reducers/deck";
+import { loadCardsInDeck, shuffleDeck } from "./redux/reducers/table";
 import { resetPlayers } from "./redux/reducers/players";
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -11,7 +11,7 @@ function App() {
   const dispatch = useAppDispatch();
   const location = useLocation();
   useEffect(() => {
-    dispatch(loadCards());
+    dispatch(loadCardsInDeck());
     dispatch(shuffleDeck());
   }, []);
 

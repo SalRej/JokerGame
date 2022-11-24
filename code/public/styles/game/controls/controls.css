@@ -10,16 +10,19 @@
   margin-top: 1em;
 }
 
-.controls .create_combination_holder .new_combination, .controls .create_combination_holder .combination {
+.controls .create_combination_holder .new_combination,
+.controls .create_combination_holder .combination {
   border: 1px solid black;
   border-radius: 11px;
   background-color: white;
+  background-color: yellow;
   margin-bottom: 1em;
   padding-left: 2%;
   padding-right: 2%;
 }
 
-.controls .create_combination_holder .new_combination img, .controls .create_combination_holder .combination img {
+.controls .create_combination_holder .new_combination img,
+.controls .create_combination_holder .combination img {
   height: 5em;
   margin-top: 2%;
 }

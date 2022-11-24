@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import deskReducer from "./reducers/deck";
 import playersReducer from "./reducers/players";
-import cardsPile from "./reducers/cardsPile";
+import tableReducer from "./reducers/table";
 const store = configureStore({
   reducer: {
-    deck: deskReducer,
     players: playersReducer,
-    cardsPile: cardsPile,
+    table: tableReducer,
   },
 });
 export default store;

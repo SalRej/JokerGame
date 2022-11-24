@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
-import { removeNumberOfCards } from "../redux/reducers/deck";
+import { removeCardsFromDeck } from "../redux/reducers/table";
 import {
   givePlayerCard,
   removeCardFromPlayer,
 } from "../redux/reducers/players";
-import { putCardInPile } from "../redux/reducers/cardsPile";
+import { putCardInPile } from "../redux/reducers/table";
 
 import Card from "../interfaces/Card";
 interface Props {
@@ -13,9 +13,9 @@ interface Props {
   setTurn: any;
 }
 const DeckAndCombinations = ({ turn, setTurn }: Props) => {
-  const deck = useAppSelector((state) => state.deck);
+  const deck = useAppSelector((state) => state.table.deck);
   const players = useAppSelector((state) => state.players);
-  const cardsPile = useAppSelector((state) => state.cardsPile);
+  const cardsPile = useAppSelector((state) => state.table.pile);
   const dispatch = useAppDispatch();
 
   const drawCard = () => {
@@ -23,7 +23,7 @@ const DeckAndCombinations = ({ turn, setTurn }: Props) => {
     const lastCard: Card = deck[deck.length - 1];
 
     dispatch(givePlayerCard({ id: playerId, card: lastCard }));
-    dispatch(removeNumberOfCards(1));
+    dispatch(removeCardsFromDeck(1));
   };
 
   useEffect(() => {
@@ -83,9 +83,7 @@ const DeckAndCombinations = ({ turn, setTurn }: Props) => {
   };
   return (
     <div className="combination_deck_holder">
-      <div className="combinations_holder">
-        <div className="new_combination">Drop you combination here</div>
-      </div>
+      <div className="combinations_holder"></div>
       <div className="deck_and_pile">
         <div
           className="deck"
