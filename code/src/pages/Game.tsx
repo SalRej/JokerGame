@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { givePlayerCard, calculatePoints } from "../redux/reducers/players";
 import { removeCardsFromDeck } from "../redux/reducers/table";
 import PlayerHand from "../components/PlayerHand";
-import DeckAndCombinations from "../components/DeckAndCombinations";
+import Table from "../components/Table";
 import Controls from "../components/Controls";
 const NUMBER_OF_CARDS_IN_HAND = 13;
 function Game() {
@@ -36,7 +36,7 @@ function Game() {
   return (
     <div className="game_holder">
       <div className="board">
-        <DeckAndCombinations turn={turn} setTurn={setTurn} />
+        <Table turn={turn} setTurn={setTurn} />
         {players.map((player, index) => {
           return <PlayerHand key={index} player={player} />;
         })}
