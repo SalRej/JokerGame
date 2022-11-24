@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Table from "../../interfaces/Table";
 import Card from "../../interfaces/Card";
+import findCombinationById from "../../../scripts/findCombinationById";
+import Player from "../../interfaces/Player";
 const initialState: Table = {
   deck: [],
   pile: [],
@@ -71,9 +73,82 @@ const tableSlice = createSlice({
       console.log(combination);
       state.combinations.push(combination);
     },
-    // addCardToCombination:(state:Table,action):void=>{
+    // addCardInCombination: (state: Table, action): void => {
+    //   const { newCard, combinationId, combinationIdToRemoveCardFrom } =
+    //     action.payload;
 
-    // }
+    //   const tempPlayer: Player = {
+    //     id: -1,
+    //     hand: [],
+    //     canPutOnTable: false,
+    //     combinations: state.combinations,
+    //     name: "temp",
+    //     points: 0,
+    //   };
+    //   const currentCombination = findCombinationById(tempPlayer, combinationId);
+    //   const combinationToRemoveCardFrom = findCombinationById(
+    //     state[0],
+    //     combinationIdToRemoveCardFrom
+    //   );
+
+    //   let areAllSameValue: boolean = true;
+
+    //   currentCombination!.cards.forEach((card: Card) => {
+    //     if (card.value != newCard.value || card.type === newCard.type) {
+    //       areAllSameValue = false;
+    //     }
+    //   });
+
+    //   if (areAllSameValue === true) {
+    //     currentCombination!.cards.push(newCard);
+    //     state[0].hand = state[0].hand.filter(
+    //       (card: Card) => card.id != newCard.id
+    //     );
+    //     if (combinationIdToRemoveCardFrom !== undefined) {
+    //       removeCardFromCombination(
+    //         state[0],
+    //         combinationToRemoveCardFrom,
+    //         newCard
+    //       );
+    //     }
+    //   } else if (areAllSameValue === false) {
+    //     let isSameType: boolean = true;
+
+    //     currentCombination?.cards.forEach((card: Card) => {
+    //       if (newCard.type != card.type) {
+    //         isSameType = false;
+    //       }
+    //     });
+
+    //     if (isSameType === true) {
+    //       const firstCard: Card = currentCombination!.cards[0];
+    //       const lastCard: Card =
+    //         currentCombination!.cards[currentCombination!.cards.length - 1];
+
+    //       if (
+    //         newCard.value === firstCard.value - 1 ||
+    //         newCard.value === lastCard.value + 1
+    //       ) {
+    //         currentCombination!.cards.push(newCard);
+
+    //         if (combinationIdToRemoveCardFrom !== undefined) {
+    //           removeCardFromCombination(
+    //             state[0],
+    //             combinationToRemoveCardFrom,
+    //             newCard
+    //           );
+    //         } else {
+    //           state[0].hand = state[0].hand.filter(
+    //             (card: Card) => card.id != newCard.id
+    //           );
+    //         }
+    //         currentCombination!.cards.sort((a, b): number => {
+    //           return a.value - b.value;
+    //         });
+    //       }
+    //     }
+    //   }
+    // },
   },
 });
 
