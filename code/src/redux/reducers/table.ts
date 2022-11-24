@@ -66,6 +66,14 @@ const tableSlice = createSlice({
       const card = action.payload;
       state.pile.push(card);
     },
+    addCombinationToTable: (state: Table, action): void => {
+      const { combination } = action.payload;
+      console.log(combination);
+      state.combinations.push(combination);
+    },
+    // addCardToCombination:(state:Table,action):void=>{
+
+    // }
   },
 });
 
@@ -74,5 +82,6 @@ export const {
   shuffleDeck,
   removeCardsFromDeck,
   putCardInPile,
+  addCombinationToTable,
 } = tableSlice.actions;
 export default tableSlice.reducer;

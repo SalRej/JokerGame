@@ -1,44 +1,50 @@
-.combination_deck_holder{
-    background-color: white;
-    width: 60%;
-    height: 40%;
-    position: relative;
-    left:20%;
-    top:20%;
+.combination_deck_holder {
+  background-color: white;
+  width: 60%;
+  height: 40%;
+  position: relative;
+  left: 20%;
+  top: 20%;
+  display: flex;
+  justify-content: space-between;
+  .deck_and_pile {
+    height: 100%;
+    width: 6em;
+    .deck {
+      height: 50%;
+      width: 100%;
+      background-color: red;
+    }
+    .deck_pile {
+      height: 50%;
+      width: 100%;
+      background-color: blue;
+      display: flex;
+      .wrapper {
+        img {
+          margin-left: -99%;
+          height: 100%;
+          transform: translateX(100%);
+        }
+      }
+    }
+  }
+  .combinations_holder {
+    background-color: yellow;
     display: flex;
-    justify-content: space-between;
-    .deck_and_pile{
-        height: 100%;
-        width: 6em;
-        .deck{
-            height: 50%;
-            width: 100%;
-            background-color: red;
-        }
-        .deck_pile{
-            height: 50%;
-            width: 100%;    
-            background-color: blue;
-            display: flex;
-            .wrapper{
-                img{
-                    margin-left:-99%;
-                    height: 100%;
-                    transform: translateX(100%);
-                }
-            }
-        }
+    flex-wrap: wrap;
+    width: 100%;
+    overflow-y: scroll;
+    div {
+      display: flex;
+      background-color: red;
+      height: fit-content;
+      margin-right: 1em;
+      margin-bottom: 0.5em;
     }
-    .combinations_holder{
-        width: 100%;
-        background-color: yellow;
-        .new_combination{
-            border: 2px black dashed;
-            border-radius: 11px;
-            width: 25%;
-            height: 5em;
-            text-align: center;
-            line-height: 5em;
-        }
+    img {
+      display: block;
+      width: 5em;
     }
+  }
 }

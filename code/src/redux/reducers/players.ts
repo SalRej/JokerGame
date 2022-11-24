@@ -21,6 +21,7 @@ export const playersSlice = createSlice({
           name: "Player " + i,
           combinations: [],
           points: 0,
+          canPutOnTable: false,
         };
         state.push(newPlayer);
       }
@@ -103,7 +104,6 @@ export const playersSlice = createSlice({
       const newCombination: Combination = {
         id: id,
         value: 0,
-        isOnTable: false,
         cards: cardArr,
       };
 
@@ -200,6 +200,17 @@ export const playersSlice = createSlice({
 
       state[0].points = points;
     },
+    removeCombinationFromPlayer: (state: Player[], action): void => {
+      const { combinationId } = action.payload;
+      state[0].combinations = state[0].combinations.filter(
+        (combination: Combination) => {
+          return combinationId != combination.id;
+        }
+      );
+    },
+    enalbePlayerToPutOnTable: (state: Player[]) => {
+      state[0].canPutOnTable = true;
+    },
   },
 });
 
@@ -212,6 +223,8 @@ export const {
   createNewCombination,
   addCardInCombination,
   calculatePoints,
+  removeCombinationFromPlayer,
+  enalbePlayerToPutOnTable,
 } = playersSlice.actions;
 
 export default playersSlice.reducer;

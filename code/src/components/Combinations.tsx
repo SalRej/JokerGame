@@ -4,10 +4,15 @@ import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import {
   addCardInCombination,
   createNewCombination,
+  removeCombinationFromPlayer,
+  enalbePlayerToPutOnTable,
 } from "../redux/reducers/players";
+import { addCombinationToTable } from "../redux/reducers/table";
+
 import Card from "../interfaces/Card";
 import Combination from "../interfaces/Combination";
 import findCardInCombinations from "../../scripts/findCardInCombinations";
+import findCombinationById from "../../scripts/findCombinationById";
 const Combinations = () => {
   const mainPlayer = useAppSelector((state) => state.players[0]);
   const dispatch = useAppDispatch();
@@ -62,8 +67,12 @@ const Combinations = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ): void => {
     const button: HTMLButtonElement = event.target as HTMLButtonElement;
-    const combinationId = button.dataset.combinationId;
-    // dispatch();
+    const combinationId = Number(button.dataset.combinationId);
+    const combination = findCombinationById(mainPlayer, combinationId);
+    console.log(combinationId, combination);
+    dispatch(removeCombinationFromPlayer({ combinationId }));
+    dispatch(addCombinationToTable({ combination }));
+    dispatch(enalbePlayerToPutOnTable());
   };
   const cancelEvent = (event: React.DragEvent<HTMLDivElement>): void => {
     event.preventDefault();
@@ -98,7 +107,9 @@ const Combinations = () => {
                     <p>0</p>
                   )}
 
-                  {combination.cards.length >= 3 && mainPlayer.points > 44 ? (
+                  {combination.cards.length >= 3 &&
+                  (mainPlayer.points > 44 ||
+                    mainPlayer.canPutOnTable === true) ? (
                     <button
                       data-combination-id={combination.id}
                       onClick={putCombinationOnTable}

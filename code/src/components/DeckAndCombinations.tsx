@@ -8,14 +8,19 @@ import {
 import { putCardInPile } from "../redux/reducers/table";
 
 import Card from "../interfaces/Card";
+import Combination from "../interfaces/Combination";
 interface Props {
   turn: number;
   setTurn: any;
 }
 const DeckAndCombinations = ({ turn, setTurn }: Props) => {
-  const deck = useAppSelector((state) => state.table.deck);
   const players = useAppSelector((state) => state.players);
+  const deck = useAppSelector((state) => state.table.deck);
   const cardsPile = useAppSelector((state) => state.table.pile);
+  const combinationsOnTable = useAppSelector(
+    (state) => state.table.combinations
+  );
+
   const dispatch = useAppDispatch();
 
   const drawCard = () => {
@@ -83,7 +88,17 @@ const DeckAndCombinations = ({ turn, setTurn }: Props) => {
   };
   return (
     <div className="combination_deck_holder">
-      <div className="combinations_holder"></div>
+      <div className="combinations_holder">
+        {combinationsOnTable.map((combination: Combination, index: number) => {
+          return (
+            <div key={index}>
+              {combination.cards.map((card: Card, index: number) => {
+                return <img src={card.imgUrl} key={index} alt="card"></img>;
+              })}
+            </div>
+          );
+        })}
+      </div>
       <div className="deck_and_pile">
         <div
           className="deck"

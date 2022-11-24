@@ -7,5 +7,6 @@ interface Player {
   name: string;
   combinations: Combination[];
   points: number;
+  canPutOnTable: boolean;
 }
 export default Player;
