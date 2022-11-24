@@ -9,7 +9,6 @@ export const cardsPileSlice = createSlice({
   reducers: {
     putCardInPile: (state: Card[], action): void => {
       const card = action.payload;
-      console.log(action);
       state.push(card);
     },
     removeTopCardFromPile: (state: Card[]): void => {

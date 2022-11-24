@@ -38,7 +38,6 @@ export const playersSlice = createSlice({
     },
     removeCardFromPlayer: (state, action): void => {
       const { playerId, cardId } = action.payload;
-
       state[playerId].hand = state[playerId].hand.filter((card: Card) => {
         return card.id != cardId;
       });
@@ -47,7 +46,9 @@ export const playersSlice = createSlice({
       const combinationToRemoveCardFrom = combinationAndCard.combination;
       const card = combinationAndCard.card;
 
-      removeCardFromCombination(state[0], combinationToRemoveCardFrom, card);
+      if (card != undefined && combinationToRemoveCardFrom != undefined) {
+        removeCardFromCombination(state[0], combinationToRemoveCardFrom, card);
+      }
     },
     rearangeCardsInHand: (state, action): void => {
       const { cardToMoveId, cardBeforeId } = action.payload;
@@ -101,7 +102,7 @@ export const playersSlice = createSlice({
 
       const newCombination: Combination = {
         id: id,
-        value: cardToAdd.value,
+        value: 0,
         isOnTable: false,
         cards: cardArr,
       };
@@ -130,7 +131,6 @@ export const playersSlice = createSlice({
 
       if (areAllSameValue === true) {
         currentCombination!.cards.push(newCard);
-        currentCombination!.value = currentCombination!.value + newCard.value;
         state[0].hand = state[0].hand.filter(
           (card: Card) => card.id != newCard.id
         );
@@ -160,8 +160,6 @@ export const playersSlice = createSlice({
             newCard.value === lastCard.value + 1
           ) {
             currentCombination!.cards.push(newCard);
-            currentCombination!.value =
-              currentCombination!.value + newCard.value;
 
             if (combinationIdToRemoveCardFrom !== undefined) {
               removeCardFromCombination(
@@ -182,12 +180,21 @@ export const playersSlice = createSlice({
       }
     },
     calculatePoints: (state): void => {
-      let points: number = 0;
+      let points = 0;
+      let currentCombinationPoints = 0;
       state[0].combinations.forEach((combination: Combination) => {
+        currentCombinationPoints = 0;
         if (combination.cards.length >= 3) {
           combination.cards.forEach((card) => {
-            points += card.value;
+            if (card.value > 10) {
+              points += 10;
+              currentCombinationPoints += 10;
+            } else {
+              points += card.value;
+              currentCombinationPoints += card.value;
+            }
           });
+          combination.value = currentCombinationPoints;
         }
       });
 

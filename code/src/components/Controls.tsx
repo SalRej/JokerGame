@@ -84,6 +84,11 @@ const Controls = () => {
                   onDragLeave={cancelEvent}
                   data-combination-id={combination.id}
                 >
+                  {combination.cards.length >= 3 ? (
+                    <p>{combination.value}</p>
+                  ) : (
+                    <p>0</p>
+                  )}
                   {combination.cards.map((card: Card, index: number) => {
                     return (
                       <DragableImage

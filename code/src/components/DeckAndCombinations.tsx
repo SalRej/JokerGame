@@ -63,7 +63,6 @@ const DeckAndCombinations = ({ turn, setTurn }: Props) => {
       };
 
       dispatch(putCardInPile(dropedCard));
-
       const playerId: number = 0; //main player
       dispatch(
         removeCardFromPlayer({ playerId: playerId, cardId: dropedCard.id })
