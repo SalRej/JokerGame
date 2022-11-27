@@ -12,7 +12,7 @@ function App() {
   const location = useLocation();
   useEffect(() => {
     dispatch(loadCardsInDeck());
-    dispatch(shuffleDeck());
+    // dispatch(shuffleDeck());
   }, []);
 
   useEffect(() => {

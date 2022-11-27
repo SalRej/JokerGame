@@ -5,6 +5,7 @@ interface Table {
   deck: Card[];
   pile: Card[];
   combinations: Combination[];
+  lastCombinationId: number;
 }
 
 export default Table;

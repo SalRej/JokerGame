@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import DragableImage from "./DragableImage";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import {

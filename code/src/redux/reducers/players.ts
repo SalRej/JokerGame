@@ -6,7 +6,7 @@ import Player from "../../interfaces/Player";
 import findCombinationById from "../../../scripts/findCombinationById";
 import findCardInCombinations from "../../../scripts/findCardInCombinations";
 import removeCardFromCombination from "../../../scripts/removeCardFromCombination";
-
+// import removeCardFromPlayer from "../../../scripts/removeCardFromPlayer";
 const initialState: Player[] = [];
 
 export const playersSlice = createSlice({
